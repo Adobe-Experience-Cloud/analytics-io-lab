@@ -91,6 +91,6 @@ Other forms of filtering
 
 Further Reading (optional)
 -----
-** TODO - insert links to Segment documentation
+* [Segments](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_segments_resource)
 
 **Continue to [Section 4](../s4_trended_data) »**
