@@ -247,7 +247,6 @@ The response will look something like the following.
 
 For our current purposes we are interested in the `title` field which is the friendly name of the metric and the `id` which is the identifier needed to refer to this metric.
 Information on the other fields in this request can be found in our documentation.
-TODO: Include link to the documentation here
 [Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
 
 Now we are going to take our original report request and use some different metrics.
@@ -269,8 +268,11 @@ This step is optional, for those who have extra time and like a challenge. Using
 Further Reading (optional)
 -----
 
-[Ranked Reports](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_reports_resource)
-[Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
-[Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
+* [Ranked Reports](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_reports_resource)
+
+* [Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
+
+* [Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
+
 
 **Continue to [Section 2](../s2_breakdown_search) »**
