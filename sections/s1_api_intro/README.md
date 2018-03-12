@@ -179,8 +179,7 @@ Now that you know how to run a basic report, let's run some reports on different
 3.    Enter 'geo1metrixxprod' in the rsid box
 4.    Click on the **Try it out!** button to run the API request
 
-This method returns a list of available dimensions for the report suite TODO:  Does this method hide dimensions the calling user doesn't have permissions to?
-The response will look something like the following.
+This method returns a list of available dimensions for the report suite. The response will look something like the following.
 ```javascript
 [
   {
@@ -205,7 +204,7 @@ The response will look something like the following.
 
 There are a lot of available details about a dimension, but for the purpose of this lab we are interested in the **`title`** field which is the friendly name of the dimension and the **`id`** which is the identifier needed to refer to this dimension.
 Information on the other fields in this request can be found in our documentation.
-TODO: Include link to the documentation here
+[Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
 
 Now we are going to take our original report request and use a different dimension.
 
@@ -249,6 +248,7 @@ The response will look something like the following.
 For our current purposes we are interested in the `title` field which is the friendly name of the metric and the `id` which is the identifier needed to refer to this metric.
 Information on the other fields in this request can be found in our documentation.
 TODO: Include link to the documentation here
+[Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
 
 Now we are going to take our original report request and use some different metrics.
 
@@ -269,8 +269,8 @@ This step is optional, for those who have extra time and like a challenge. Using
 Further Reading (optional)
 -----
 
-* TODO: Add link to the ranked report documentation
-* TODO: Add link to the dimensions documentation
-* TODO: Add link to the metrics documentation
+[Ranked Reports](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_reports_resource)
+[Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
+[Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
 
 **Continue to [Section 2](../s2_breakdown_search) »**
