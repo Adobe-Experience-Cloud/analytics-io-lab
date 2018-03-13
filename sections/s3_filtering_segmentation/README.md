@@ -89,6 +89,15 @@ Other forms of filtering
 3. Click the "Try it out!" button to submit the request
 4. Take a look at the results. You should have data where the page dimension value contains the clause "home" sorted by visitors descending. You should also have a searchTotals array in the response with the totals of your search for "home".
 
+Congratulations! You've completed Section 4 and should understand how to work with segments in the new Analytics V2 API. You can **Continue to [Section 4](../s4_trended_data) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
+
+Extra Credit Challenge (optional)
+-----
+This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
+
+1. What is the most popular mobile device for users in the segment of "Browser contains Chrome"?
+2. What is the least popular search engine for users in the segment of "Browser contains Chrome"?
+
 Further Reading (optional)
 -----
 * [Segments](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_segments_resource)

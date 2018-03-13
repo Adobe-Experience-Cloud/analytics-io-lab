@@ -149,4 +149,15 @@ Understanding the report response
 -----
 Notice that we have 3 columns of data in our response. There is a column for each of the specific pages from our request.
 
+
+Congratulations! You've completed Section 4 and should understand how to request trended reports. You can **Continue to [Section 5](../s5_tips_tricks) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
+
+
+Extra Credit Challenge (optional)
+-----
+This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
+
+1. What day of the month recieved the most traffic from the apple iphone?
+2. Which product is most popular during the hour of the day that gets the most traffic?
+
 **Continue to [Section 5](../s5_tips_tricks) »**
