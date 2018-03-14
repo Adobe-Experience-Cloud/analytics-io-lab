@@ -340,4 +340,14 @@ When searching some of the settings options can be particularly handy.
 
 Setting the sort order and the number of rows for each request can make it much easier to find the specific data you are looking for and can also make processing the data in a script more efficient.
 
+Congratulations! You've completed Section 2 and should understand more about breakdowns and searching in the new Analytics V2 API. You can **Continue to [Section 3](../s3_filtering_segmentation) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
+
+Extra Credit Challenge (optional)
+-----
+This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
+
+1. Try to do a multiple level deep breakdown by finding out how many unique visitors looked the "UltraTech Socks" product while searching with the "outdoor gear" keyword on a mobile device manufactured by "Samsung". Hint - You will need more than one filter in the filters array.
+2. What is the total number of unique visitors that looked at "Timberline GTX Boots" while using a mobile device manufacured by a company with the letter 'a' in it's name?
+
+
 **Continue to [Section 3](../s3_filtering_segmentation) »**
