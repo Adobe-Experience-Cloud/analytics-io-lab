@@ -1,68 +1,132 @@
-Section 1 – Introduction to the new reporting APIs
+Section 1 – Introduction to Reporting
 ====
+
+**Go back to [Section 0](../s0_getting_started) | Go forward to [Section 2](../s2_breakdown_search)**
+
 
 Objectives
 ----
-*    Run your first report against the analytics APIs
+*    Use the metrics and dimensions API methods to request lists of metrics and dimensions
 *    Understand the data format for reporting
-*    Use the metrics and dimensions API methods to request additional data
+*    Run your first report against the analytics APIs
 
-Running Your First Report
+Analysis Workspace presents users with lists of dimensions and metrics in the left rail. It uses the /dimensions and /metrics API methods to get those lists.
+
+Exercise 1 - Querying Lists of Dimensions
 -----
+
+Programmatically get a list of dimensions available in a report suite by calling the /dimensions API method according to the following steps: 
+
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
-2.    Scroll down and expand the reports section 
-3.    Click on **/reports/ranked** to expand the documentation for that method
-4.    Paste the following json report request into the body text box
+2.    Locate and expand the **dimensions** section in the Swagger interface
+3.    Click on **GET /dimension**
+4.    Enter 'geo1metrixxprod' in the rsid box
+5.    Click on the **Try it out!** button to run the API request
+
+This method returns a list of available dimensions for the report suite. The response will look something like the following.
+```javascript
+[
+  {
+    "id": "variables/geocountry",
+    "title": "Countries",
+    "name": "Countries",
+    "type": "enum",
+    "category": "Audience",
+    "support": [
+      "oberon",
+      "dataWarehouse"
+    ],
+    "pathable": false,
+    "segmentable": true,
+    "reportable": [
+      "oberon"
+    ],
+    ...
+  }
+]
+```
+
+There are a lot of available details about a dimension, but for the purpose of this lab we are interested in the **`title`** field which is the friendly name of the dimension and the **`id`** which is the identifier needed to refer to this dimension in a report request.
+
+Information on the other fields in this request can be found in the documentation.
+[Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
+
+Exercise 2 - Querying Lists of Metrics
+-----
+Querying lists of metrics is similar to querying lists of dimensions. Request the list of available metrics for the report suite by calling the /metrics API method according to the following steps:
+
+1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
+2.    Locate and expand the **metrics** section of the documentation
+3.    Click on **GET /metrics**
+4.    Enter 'geo1metrixxprod' in the rsid box
+5.    Click on the **Try it out!** button to run the API request
+
+This method returns a list of available metrics for the report suite.
+The response will look something like the following.
+```javascript
+[
+  {
+    "id": "metrics/orders",
+    "title": "Orders",
+    "name": "Orders",
+    "type": "int",
+    "category": "Conversion",
+    "support": [
+      "oberon",
+      "dataWarehouse"
+    ],
+    "allocation": true,
+    "precision": 0,
+    "calculated": false,
+    "segmentable": true,
+    "polarity": "positive"
+  },
+  ...
+]
+```
+
+We are interested in the `title` field which is the friendly name of the metric and the `id` which is the identifier needed to refer to this metric in a report request.
+
+Information on the other fields in this request can be found in our documentation.
+[Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
+
+Understanding the report request
+-----
+Now that you know how to get lists of metrics and dimensions, you are ready to run your first report. In Analysis Workspace, you simply drag dimensions and metrics into the table panel. In order to do this programmatically you need to construct a report request. Review the following request
+ 
 ```javascript
 {
   "rsid": "geo1metrixxprod",
-  "dimension": "variables/page",
   "globalFilters": [
     {
-      "dateRange": "2018-03-03T00:00:00.000/2018-03-04T00:00:00.000",
+      "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000",
       "type": "dateRange"
     }
   ],
   "metricContainer": {
     "metrics": [
       {
-        "columnId": "pageviews",
-        "id": "metrics/pageviews"
-      },
-      {
-        "columnId": "visits",
-        "id": "metrics/visits"
+        "columnId": "occurrences",
+        "id": "metrics/occurrences"
       }
     ]
-  }
+  },
+  "dimension": "variables/page"
 }
-```
-6.   Click on submit  
 
-
-Take a look at the results. 
-
-
-Understanding the report request
------
-The report request you just made is requesting the pages in the geo1metrixxprod report suite ID with the pageviews and visits metrics for the full day of March 3, 2018.
-
-Below is a more detailed explanation of each of the portions of this report request. The sections of the report request are not required to be in any particular order.
+A report request has several important parts:
 
 ### rsid 
-The required rsid parameter specifies the report suite ID for the report suite that you want the data to come from. This id can be found in the Report Suite Management section of the Analytics Admin Console or through the /collections/reportsuites API call. Make sure not to confuse the Report Suite ID with the Report Suite Name, also referred to as the "friendly name" or "display name".
-
-### dimension (optional) 
-The optional dimension parameter will cause the report to return data for a particular dimension. The dimension can be any dimension from the /dimensions API method, including the daterange dimensions. If this parameter is not included then you will get a response with just the totals for the given metrics. Although multiple metrics can be specified in a single report request, only a single dimension is allowed. If you want additional dimensions you will need to make additional requests.
+The required rsid parameter specifies the report suite ID for the report suite that you want the data to come from.
 
 ### globalFilters 
 The required globalFilters parameter contains a collection of filters that apply to the entire request. At a minimum a filter specifying the date range for the given report is required. 
 
 ### metricContainer
-This parameter defines all the metrics for the given report request and will be represented as the columns in the report response.
+This required parameter defines all the metrics for the given report request and will be represented as the columns in the report response. 
 
 #### metrics
-The collection holds the metrics for the requested report. Metrics have two required parts to their definition: id and columnId. There is also an optional sort part of a metric definition. 
+The array holds the metrics for the requested report. Metrics have two required parts to their definition: id and columnId. There is also an optional sort part of a metric definition. 
 
 ##### id 
 The id of the metric. Use the /metrics or /calculatedmetrics API methods for the list of available options
@@ -70,56 +134,94 @@ The id of the metric. Use the /metrics or /calculatedmetrics API methods for the
 ##### columnId
 The name of the column of data that will be returned. You may use the same metric multiple times with different filters in the report response so providing columnIds for the response makes it easier to identify them in the response.
 
+### dimension (optional) 
+The optional dimension parameter will cause the report to return data for a particular dimension. The dimension can be any dimension from the /dimensions API method, including the daterange dimensions.
 
-Understanding the report response
+Exercise 3 - Running Your First Report
 -----
-Now let's look at the report response and make sure that we understand what this data means.
+1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
+2.    Scroll down and expand the reports section 
+3.    Click on **/reports/ranked** to expand the documentation for that method
+4.    Paste the following JSON report request into the body text box
+```javascript
+{
+  "rsid": "geo1metrixxprod",
+  "globalFilters": [
+    {
+      "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000",
+      "type": "dateRange"
+    }
+  ],
+  "metricContainer": {
+    "metrics": [
+      {
+        "columnId": "occurrences",
+        "id": "metrics/occurrences"
+      }
+    ]
+  },
+  "dimension": "variables/page"
+}
+```
+6.   Click on Try it Out!
 
+
+Take a look at the results.  Do they match this Analysis Workspace report?
+
+![s1_exercise3_results](../../images/s1_exercise3_results.png?raw=true)
+
+
+Understanding the Report Response
+-----
 Here is a partial example response:
 
 ```javascript
 {
-  "totalPages": 3,
-  "firstPage": true,
-  "lastPage": false,
-  "numberOfElements": 50,
-  "number": 0,
-  "totalElements": 142,
-  "columns": {
-    "dimension": {
-      "id": "variables/page",
-      "type": "string"
+    "totalPages": 3,
+    "firstPage": true,
+    "lastPage": false,
+    "numberOfElements": 50,
+    "number": 0,
+    "totalElements": 149,
+    "columns": {
+        "dimension": {
+            "id": "variables/page",
+            "type": "string"
+        },
+        "columnIds": [
+            "0"
+        ]
     },
-    "columnIds": [
-      "pageviews",
-      "visits"
-    ]
-  },
-  "rows": [
-    {
-      "itemId": "2897271828",
-      "value": "Search Results",
-      "data": [
-        1892,
-        942
-      ]
-    },
-    {
-      "itemId": "2080918144",
-      "value": "Shopping Cart: Cart Details",
-      "data": [
-        1572,
-        874
-      ]
+    "rows": [
+        {
+            "itemId": "2897271828",
+            "value": "Search Results",
+            "data": [
+                4618
+            ]
+        },
+        {
+            "itemId": "2080918144",
+            "value": "Shopping Cart: Cart Details",
+            "data": [
+                3853
+            ]
+        },
+        {
+            "itemId": "3306266643",
+            "value": "Home",
+            "data": [
+                3612
+            ]
+        }
+		...
+		
+     ],
+    "summaryData": {
+        "totals": [
+            39700
+        ]
     }
-  ], 
-  ...
-  "summaryData": {
-    "totals": [
-      16338,
-      5659
-    ]
-  }
 }
 ```
 
@@ -130,15 +232,15 @@ How many pages of data are in this response.
 boolean value set to true if this is the first page
 
 ### lastPage
-boolean value set to true if this is the last page. Note that a page can be both the first page and the last page if there is only a single page of data.
+boolean value set to true if this is the last page. 
 
 ### numberOfElements
-Integer value specifying the number of elements in the current page
+Integer value specifying the number of rows in the current page
 
 ### number
 Integer value specifying the current page number
 
-### total Elements
+### totalElements
 This is the total number of rows in this response
 
 ### columns
@@ -167,93 +269,89 @@ This is an array of data for the metrics that were requested in this report requ
 This is an array of aggregated or calculated data for this report.
 
 #### totals
-This array holds the totals over the requested date range for the metrics in this report request. Reference the columnIds array in the columns object to understand what each item in the totals array represents. If the report request contained a dimension then this is the count of every time the metric was incremented when the dimension was sent in.  If the report did not include a dimension then this is a count of every time the metric was incremented.
+This array holds the totals over the requested date range for the metrics in this report request. Reference the columnIds array in the columns object to understand what each item in the totals array represents. 
 
-
-Changing the Dimension of the Report
+Exercise 4 - Changing the Dimension and Metric
 -----
-Now that you know how to run a basic report, let's run some reports on different dimensions. You can programmatically get a list of dimensions available in a report suite by calling the /dimensions API method according to the following steps: 
-
-1.    Locate and expand the **dimensions** section of the documentation
-2.    Click on **GET /dimension**
-3.    Enter 'geo1metrixxprod' in the rsid box
-4.    Click on the **Try it out!** button to run the API request
-
-This method returns a list of available dimensions for the report suite. The response will look something like the following.
+1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
+2. Scroll down and expand the reports section 
+3. Click on **/reports/ranked** to expand the documentation for that method
+4. Using the same basic report request from Exercise 3, change the dimension so that you are requesting the Product dimension and the metric so you are requeting the Product Views metric. You will need to edit the following JavaScript before pasting into :
 ```javascript
-[
-  {
-    "id": "variables/geocountry",
-    "title": "Countries",
-    "name": "Countries",
-    "type": "enum",
-    "category": "Audience",
-    "support": [
-      "oberon",
-      "dataWarehouse"
-    ],
-    "pathable": false,
-    "segmentable": true,
-    "reportable": [
-      "oberon"
-    ],
-    ...
-  }
-]
-```
-
-There are a lot of available details about a dimension, but for the purpose of this lab we are interested in the **`title`** field which is the friendly name of the dimension and the **`id`** which is the identifier needed to refer to this dimension.
-Information on the other fields in this request can be found in our documentation.
-[Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
-
-Now we are going to take our original report request and use a different dimension.
-
-Repeat the steps that you followed in running your first report, but this time use a different dimension. It can be any dimension returned by the **GET /dimensions** API method. (e.g. variables/geocountry). [Running Your First Report](sections/s1_api_intro#running-your-first-report)
-
-The report data should reflect your new dimension instead of the Page variable of the original report.
-
-Changing the Metrics on the Report
------
-Now let's query some different metrics. Changing the metric is similar to changing the dimension. You request the list of available metrics for the report suite by calling the /metrics API method according to the following steps:
-
-1.    Locate and expand the **metrics** section of the documentation
-2.    Click on **GET /metrics**
-3.    Enter 'geo1metrixxprod' in the rsid box
-4.    Click on the **Try it out!** button to run the API request
-
-This method returns a list of available metrics for the report suite.
-The response will look something like the following.
-```javascript
-[
-  {
-    "id": "metrics/orders",
-    "title": "Orders",
-    "name": "Orders",
-    "type": "int",
-    "category": "Conversion",
-    "support": [
-      "oberon",
-      "dataWarehouse"
-    ],
-    "allocation": true,
-    "precision": 0,
-    "calculated": false,
-    "segmentable": true,
-    "polarity": "positive"
+{
+  "rsid": "geo1metrixxprod",
+  "globalFilters": [
+    {
+      "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000",
+      "type": "dateRange"
+    }
+  ],
+  "metricContainer": {
+    "metrics": [
+      {
+        "columnId": "<edit this>",
+        "id": "<edit this>"
+      }
+    ]
   },
-  ...
-]
+  "dimension": "<edit this>"
+}
 ```
 
-For our current purposes we are interested in the `title` field which is the friendly name of the metric and the `id` which is the identifier needed to refer to this metric.
-Information on the other fields in this request can be found in our documentation.
-[Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
+Hint:  The name "Product Views" is only a display name, the actual metric ID is different. You may need to use the /metrics endpoint from Exercise 2 to look up the actual metric ID for the Product Views metric.
 
-Now we are going to take our original report request and use some different metrics.
+6.   Click on **Try it out!**
 
-Repeat the steps that you followed in running your first report, but this time include some metrics. It can be any metric or combination of metrics returned by the **GET /metrics** API method. (e.g. metrics/orders). [Running Your First Report](sections/s1_api_intro#running-your-first-report)
 
-The report data should reflect your new metrics instead of the visits metric of the original report.
+Take a look at the results.  Do they match this Analysis Workspace report?
+
+![s1_exercise4_results](../../images/s1_exercise4_results.png?raw=true)
+
+Exercise 5 - Multiple Metrics in a Single Request and Sorting
+-----
+1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
+2. Scroll down and expand the reports section 
+3. Click on **/reports/ranked** to expand the documentation for that method
+4. Using the same basic report request from Exercise 4, change the metrics so that you are requesting the Unique Visitors, Product Views, and Cart Additions metrics, sorted descending by Unique Visitors. **You will need to edit the following JavaScript before pasting into the body text box** :
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "<edit this>",
+                "id": "<edit this>",
+                "sort": "<edit this>"
+            },
+            {
+                "columnId": "<edit this>",
+                "id": "<edit this>"
+            },
+            {
+                "columnId": "2",
+                "id": "<edit this>"
+            }
+        ]
+    },
+    "dimension": "variables/product"
+}
+```
+
+Hint: A sort on column can be ascending ("asc") or descending ("desc")
+
+6.   Click on **Try it out!**
+
+
+Take a look at the results.  Do they match this Analysis Workspace report?
+
+![s1_exercise5_results](../../images/s1_exercise5_results.png?raw=true)
+
 
 Congratulations! You've completed Section 1 and should understand the basic elements of running a report using the new Analytics V2 API. You can **Continue to [Section 2](../s2_breakdown_search) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
 
@@ -275,4 +373,4 @@ Further Reading (optional)
 * [Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
 
 
-**Continue to [Section 2](../s2_breakdown_search) »**
+** Go back to [Section 0](../s0_getting_started) | Continue to [Section 2](../s2_breakdown_search) »**
