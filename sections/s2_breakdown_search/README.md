@@ -8,7 +8,9 @@ Objectives
 
 Performing a Breakdown
 -----
-A breakdown report is where you filter a dimension by a specific value of another dimension. The data will show you all values of dimension 2 where the value of dimension 1 was also present in the same data collection request (not counting evar persistence).
+A breakdown report filters a dimension by a specific value of another dimension.
+
+Exercise 1 - 
 
 The first thing that we are going to do is view the values of dimension 2.
 1.    Make sure that you have followed the steps above to [Access the Swagger UI](../s1_api_intro#accessing-the-swagger-interface)
@@ -21,7 +23,7 @@ The first thing that we are going to do is view the values of dimension 2.
   "dimension": "variables/browser",
   "globalFilters": [
     {
-      "dateRange": "2014-06-01T00:00/2014-06-21T00:00",
+      "dateRange": "2018-03-01T00:00/2018-03-04T00:00",
       "type": "dateRange"
     }
   ],
