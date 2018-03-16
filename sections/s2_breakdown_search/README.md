@@ -1,231 +1,365 @@
 Section 2 – Breakdowns and Searching
 ====
 
+**Back to [Section 1](../s1_api_intro) | Skip to [Section 3](../s3_filtering_segmentation) **
+
 Objectives
 ----
 *    Run a breakdown report
 *    Perform a search 
 
-Performing a Breakdown
+A breakdown report filters a dimension based on the specific value of another dimension
+
+Exercise 1 - Performing a Breakdown
 -----
-A breakdown report filters a dimension by a specific value of another dimension.
 
-Exercise 1 - 
+You will need to make multiple report requests in this exercise. The first request will get the values for Product Type:
 
-The first thing that we are going to do is view the values of dimension 2.
-1.    Make sure that you have followed the steps above to [Access the Swagger UI](../s1_api_intro#accessing-the-swagger-interface)
-2.    Scroll down and expand the reports section of the documentation
-3.    Click on the `/reports/ranked` text to expand the documentation for that endpoint
-4.    Paste the following json report request into the body text box
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the top values for the Product Type dimension with the Product Views metric. The Product Type dimension is stored in variables/evar6 in the following report request:
 ```javascript
 {
-  "rsid": "geo1metrixxprod",
-  "dimension": "variables/browser",
-  "globalFilters": [
-    {
-      "dateRange": "2018-03-01T00:00/2018-03-04T00:00",
-      "type": "dateRange"
-    }
-  ],
-  "metricContainer": {
-    "metrics": [
-      {
-        "columnId": "pageviews",
-        "id": "metrics/pageviews"
-      },
-      {
-        "columnId": "visits",
-        "id": "metrics/visits"
-      }
-    ]
-  }
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "Product Views",
+                "id": "metrics/productinstances",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "variables/evar6"
 }
 ```
-6.   Click on the submit  
-
-
-The data should look something like the following:
+The returned data should match the following:
 ```javascript
 {
-  "totalPages": 4,
+  "totalPages": 1,
   "firstPage": true,
-  "lastPage": false,
-  "numberOfElements": 50,
+  "lastPage": true,
+  "numberOfElements": 34,
   "number": 0,
-  "totalElements": 157,
+  "totalElements": 34,
   "columns": {
     "dimension": {
-      "id": "variables/browser",
+      "id": "variables/evar6",
       "type": "string"
     },
     "columnIds": [
-      "pageviews",
-      "visits"
+      "Product Views"
     ]
   },
   "rows": [
     {
-      "itemId": "497",
-      "value": "Microsoft Internet Explorer 8",
+      "itemId": "1664911617",
+      "value": "Boots",
       "data": [
-        57548,
-        5647
+        2313
       ]
     },
     {
-      "itemId": "594",
-      "value": "Microsoft Internet Explorer 10",
+      "itemId": "2271066348",
+      "value": "Jackets",
       "data": [
-        49741,
-        4922
+        1984
       ]
     },
     {
-      "itemId": "634",
-      "value": "Google Chrome 29.0",
+      "itemId": "2306440506",
+      "value": "Hats",
       "data": [
-        45973,
-        4585
+        1397
+      ]
+    },
+ 
+ ...
+ 
+    {
+      "itemId": "3642090695",
+      "value": "Helmets",
+      "data": [
+        50
       ]
     }
   ],
   "summaryData": {
     "totals": [
-      343852,
-      34035
+      12609
     ]
   }
 }
 ```
 
-Now we are going to run the second report with a breakdown filter of a specific browser.
+We want to break down the Boots product type by the Products in that category. We need to know the itemId for the value "Boots", which is 1664911617 as shown in the above result. The second request will do the actual breakdown:
+
+2. Using the itemID of 1664911617 obtained from the first request, run a second request breaking down the Boots item by Product with the following report request:
+
 ```javascript
 {
-  "rsid": "geo1metrixxprod",
-  "dimension": "variables/page",
-  "globalFilters": [
-    {
-      "dateRange": "2014-06-01T00:00/2014-06-21T00:00",
-      "type": "dateRange"
-    }
-  ],
-  "metricContainer": {
-    "metricFilters": [
-      {
-        "dimension": "variables/browser",
-        "id": "breakdown1",
-        "itemId": 634,
-        "type": "breakdown"
-      }
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
     ],
-    "metrics": [
-      {
-        "columnId": "pageviews",
-        "filters": [
-          "breakdown1"
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "Product Views",
+                "id": "metrics/productinstances",
+                "filters": [
+                    "0"
+                ]
+            }
         ],
-        "id": "metrics/pageviews"
-      },
-      {
-        "columnId": "visits",
-        "id": "metrics/visits"
-      }
-    ]
-  }
+        "metricFilters": [
+            {
+                "id": "0",
+                "type": "breakdown",
+                "dimension": "variables/evar6",
+                "itemId": "1664911617"
+            }
+        ]
+    },
+    "dimension": "variables/product"
 }
 ```
 
-There are a few new things that you should pay attention to on the above request. 
-* We now have a metricFilters array in the metricContainer object
-	* The filters object is of type breakdown (There are other types as well which we will show in a future example)
-	* The dimension that this breakdown refers to is the browser dimension (you can see all the dimensions in the /dimensions endpoint that we had shown in last section)
-	* The itemId is a specific id from the browsers report that we had run earlier
-* The metrics array now has a filter on the pageviews metric and the id of that metric matches the id defined in the metric filters object.
-
-When you run this request you will see that the page views metric is much smaller since it is only representing traffic from a specific version of the Google Chrome browser.
-
-Here is a second example that shows some of the flexibility of metricFilters:
-```javascript
-{
-  "rsid": "geo1metrixxprod",
-  "dimension": "variables/page",
-  "globalFilters": [
-    {
-      "dateRange": "2014-06-01T00:00/2014-06-21T00:00",
-      "type": "dateRange"
-    }
-  ],
-  "metricContainer": {
-    "metricFilters": [
-      {
-        "dateRange": "2014-06-01T00:00/2014-06-15T00:00",
-        "id": "dateRange1",
-        "type": "dateRange"
-      },
-      {
-        "dimension": "variables/pages",
-        "id": "breakdown1",
-        "itemId": 12345678,
-        "type": "breakdown"
-      }
-    ],
-    "metrics": [
-      {
-        "columnId": "pageviews",
-        "filters": [
-          "breakdown1"
-        ],
-        "id": "metrics/pageviews"
-      },
-      {
-        "columnId": "visits",
-        "filters": [
-          "breakdown1",
-          "dateRange1"
-        ],
-        "id": "metrics/visits"
-      }
-    ]
-  }
-}
-```
-
-There are a few new things in the above request:
-* We have a metric filter of type dateRange that has a date range that is smaller than the global filter
-* We have applied the breakdown1 filter to both metrics
-* We have applied the daterange1 filter to only one metric
-
-Performing a Search
+Understanding a Breakdown Request
 -----
-In the above examples we introduced metric filters and showed some of their uses. Now we are going to cover methods of filtering a request by the values of a dimension.
+* A breakdown requires a metricFilters array in the metricContainer object
+	* The filter has an integer ID so it can be referenced on specific metrics
+	* The filters object is of type breakdown
+	* The dimension that this breakdown refers to is the variables/evar6 dimension 
+	* The itemId is is the specific id for Boots from Product Type report in the previous step
+* The metrics array now has a filter on the pageviews metric and the id of that metric matches the id of the filter defined in the metric filters array.
 
-The following API request could be used if you wanted to see all pages that related to your shopping cart.
+The breakdown request returns the following results:
+
 ```javascript
 {
-  "dimension": "variables/page",
-  "globalFilters": [
-    {
-      "dateRange": "2014-06-01T00:00/2014-06-21T00:00",
-      "type": "dateRange"
-    }
-  ],
-  "metricContainer": {
-    "metrics": [
-      {
-        "columnId": "pageviews",
-        "id": "metrics/pageviews"
-      },
-      {
-        "columnId": "visits",
-        "id": "metrics/visits"
-      }
+  "totalPages": 1,
+  "firstPage": true,
+  "lastPage": true,
+  "numberOfElements": 6,
+  "number": 0,
+  "totalElements": 6,
+  "columns": {
+    "dimension": {
+      "id": "variables/product",
+      "type": "string"
+    },
+    "columnIds": [
+      "Product Views"
     ]
   },
-  "rsid": "geo1metrixxprod",
-  "search": {
-    "clause": "( 'Cart' )",
-    "includeSearchTotal": true
+  "rows": [
+    {
+      "itemId": "4005923578",
+      "value": "Timberline GTX Boots",
+      "data": [
+        1618
+      ]
+    },
+    {
+      "itemId": "2877370343",
+      "value": "Black Run Ski Boots",
+      "data": [
+        483
+      ]
+    },
+    {
+      "itemId": "3722566666",
+      "value": "Tobermory Snow Boot",
+      "data": [
+        116
+      ]
+    },
+    {
+      "itemId": "3287064421",
+      "value": "Bruin Point Shearling Boots",
+      "data": [
+        62
+      ]
+    },
+    {
+      "itemId": "1146308611",
+      "value": "High Uintas Snow Boots",
+      "data": [
+        25
+      ]
+    },
+    {
+      "itemId": "3431234972",
+      "value": "Slopeside Snowboard Boot",
+      "data": [
+        9
+      ]
+    }
+  ],
+  "summaryData": {
+    "totals": [
+      2313
+    ]
   }
+}
+```
+
+the results match the Analysis Workspace report:
+
+![s2_exercise2_results1](../../images/s2_exercise2_results2.png?raw=true)
+
+
+Exercise 2 - Breakdown Page by Browser 
+-----
+Using the same technique for breakdowns you learned in section one, breakdown the Search Results page by Browser.
+
+1. First get the list of Pages using Analysis Workspace's default metric of Occurrences. **You will need to edit the following JavaScript before pasting into the body text box**:
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "Ocurrences",
+                "id": "<edit this>",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "<edit this>"
+}
+```
+
+Do your results for Page values match Analysis Workspace? 
+
+
+![s2_exercise2_results](../../images/s2_exercise2_results.png?raw=true)
+
+2. Find the itemId value for the "Search Results" page. 
+3. Construct a breakdown request to breakdown the "Search Results" page by Browser. **You will need to edit the following JavaScript before pasting into the body
+text box**:
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "Ocurrences",
+                "id": "<edit this>",
+                "filters": [
+                    "<edit this>"
+                ]
+            }
+        ],
+        "metricFilters": [
+            {
+                "id": "<edit this>",
+                "type": "<edit this>",
+                "dimension": "<edit this>",
+                "itemId": "<edit this>"
+            }
+        ]
+    },
+    "dimension": "<edit this>"
+}
+```
+
+Do your results for the Search Results page broken down by Browser match Analysis Workspace?
+
+![s2_exercise2_results](../../images/s2_exercise2_results.png?raw=true) 
+
+Analysis Workspace can also do searches on dimension values. 
+
+Understanding a Search 
+-----
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "0",
+                "id": "metrics/occurrences",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "variables/page",
+    "search": {
+        "clause": "( CONTAINS 'kids' )",
+	"includeSearchTotal" : true
+    }
+}
+```
+
+A search added to the report request filters the dimensions in the report by the search clause. A search section must contain a clause attribute. All other attributes are optional. Search clauses can be very flexible and use the AND, OR, and NOT logical operators. 
+
+*   "clause": "( CONTAINS 'Kids' ) OR ( CONTAINS 'Home' )"
+*   "clause": "( CONTAINS 'Kids' ) AND ( NOT CONTAINS 'Home' )"
+*   "clause": "( 'Kids' ) AND ( 'Home' )"
+*   "clause": "'Kids' OR 'Home'"
+*   "clause": "'Kids'"
+
+
+There are other search criteria besides CONTAINS:
+* MATCH
+* ENDS-WITH
+* BEGINS-WITH
+
+
+Exercise 3 - Peforming a Search
+----- 
+
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for the Page dimension with the value of "kids"
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "0",
+                "id": "metrics/occurrences",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "variables/page",
+    "search": {
+        "clause": "( CONTAINS 'kids' )",
+	"includeSearchTotal" : true
+    }
 }
 ```
 
@@ -235,112 +369,104 @@ The response data will look something like this
   "totalPages": 1,
   "firstPage": true,
   "lastPage": true,
-  "numberOfElements": 5,
+  "numberOfElements": 1,
   "number": 0,
-  "totalElements": 5,
+  "totalElements": 1,
   "columns": {
     "dimension": {
       "id": "variables/page",
       "type": "string"
     },
     "columnIds": [
-      "pageviews",
-      "visits"
+      "0"
     ]
   },
   "rows": [
     {
-      "itemId": "2390504924",
-      "value": "Shopping Cart|Cart Details",
+      "itemId": "3857221589",
+      "value": "Kids",
       "data": [
-        40842,
-        19791
-      ]
-    },
-    {
-      "itemId": "3786354655",
-      "value": "Shopping Cart|Shipping Information",
-      "data": [
-        20095,
-        13972
-      ]
-    },
-    {
-      "itemId": "4086749071",
-      "value": "Shopping Cart|Billing Information",
-      "data": [
-        14615,
-        11433
-      ]
-    },
-    {
-      "itemId": "3961702603",
-      "value": "Shopping Cart|Order Review",
-      "data": [
-        8736,
-        7877
-      ]
-    },
-    {
-      "itemId": "2105155662",
-      "value": "Shopping Cart|Order Confirmation",
-      "data": [
-        6012,
-        5658
+        1316
       ]
     }
   ],
   "summaryData": {
     "totals": [
-      343852,
-      34035
+      39700
     ],
     "searchTotals": [
-      90300,
-      19793
+      1316
     ]
   }
 }
 ```
 
-Since we asked for searchTotals in our request you will see that extra value in the summary field. You can add the values related to each metric from each response and it will equal the value of the search total. The standard totals include the counts for all the pages. 
-
-When searching some of the settings options can be particularly handy.
+Exercise 4 - Searching with Operators
+-----
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any Page dimensions that contain the value of "kids" OR the value of "home". **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
-  "dimension": "variables/page",
-  "globalFilters": [
-    {
-      "dateRange": "2014-06-01T00:00/2014-06-21T00:00",
-      "type": "dateRange"
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "0",
+                "id": "metrics/occurrences",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "variables/page",
+    "search": {
+        "clause": "<edit this>",
+	"includeSearchTotal" : true
     }
-  ],
-  "metricContainer": {
-    "metrics": [
-      {
-        "columnId": "pageviews",
-        "id": "metrics/pageviews"
-      },
-      {
-        "columnId": "visits",
-        "id": "metrics/visits"
-      }
-    ]
-  },
-  "rsid": "geo1metrixxprod",
-  "settings": {
-    "dimensionSort": "asc",
-    "limit": 50,
-    "page": 0
-  },
-  "search": {
-    "clause": "( 'Cart' )",
-    "includeSearchTotal": true
-  }
 }
 ```
 
-Setting the sort order and the number of rows for each request can make it much easier to find the specific data you are looking for and can also make processing the data in a script more efficient.
+Do your results match Analysis Workspace?
+
+![s2_exercise4_results](../../images/s2_exercise4_results.png?raw=true) 
+
+
+Exercise 5 - Searching with different criteria
+-----
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any Page dimensions that start with the value of "Product" **You will need to edit the following JavaScript before pasting into the body text box**:
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "0",
+                "id": "metrics/occurrences",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "variables/page",
+    "search": {
+        "clause": "<edit this>",
+	"includeSearchTotal" : true
+    }
+}
+```
+
+Do your results match Analysis Workspace?
+
+![s2_exercise5_results](../../images/s2_exercise5_results.png?raw=true) 
 
 Congratulations! You've completed Section 2 and should understand more about breakdowns and searching in the new Analytics V2 API. You can **Continue to [Section 3](../s3_filtering_segmentation) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
 
@@ -348,8 +474,8 @@ Extra Credit Challenge (optional)
 -----
 This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
 
-1. Try to do a multiple level deep breakdown by finding out how many unique visitors looked the "UltraTech Socks" product while searching with the "outdoor gear" keyword on a mobile device manufactured by "Samsung". Hint - You will need more than one filter in the filters array.
+1. Try to do a multiple level deep breakdown by finding out how many unique visitors viewed the "UltraTech Socks" product while searching with the "outdoor gear" keyword on a mobile device manufactured by "Samsung". Hint - You will need more than one filter in the filters array.
 2. What is the total number of unique visitors that looked at "Timberline GTX Boots" while using a mobile device manufacured by a company with the letter 'a' in it's name?
 
 
-**Continue to [Section 3](../s3_filtering_segmentation) »**
+**Back to [Section 1](..s1_api_intro) | Continue to [Section 3](../s3_filtering_segmentation) »**
