@@ -246,9 +246,11 @@ Do your results for the Search Results page broken down by Browser match Analysi
 
 ![s2_exercise2_results2](../../images/s2_exercise2_results2.png?raw=true) 
 
+Searching
+-----
 Analysis Workspace can also do searches on dimension values. 
 
-Understanding a Search 
+Understanding a Search atribute
 -----
 ```javascript
 {
@@ -276,7 +278,7 @@ Understanding a Search
 }
 ```
 
-A search added to the report request filters the dimensions in the report by the search clause. A search section must contain a clause attribute. All other attributes are optional. Search clauses can be very flexible and use the AND, OR, and NOT logical operators. 
+A search added to the report request will filter the dimensions in the report by the search clause. A search attribute must contain a clause attribute. All other attributes are optional. Search clauses can be very flexible and use the AND, OR, and NOT logical operators. 
 
 *   "clause": "( CONTAINS 'Kids' ) OR ( CONTAINS 'Home' )"
 *   "clause": "( CONTAINS 'Kids' ) AND ( NOT CONTAINS 'Home' )"
