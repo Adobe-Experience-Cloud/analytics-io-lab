@@ -1,7 +1,7 @@
 Section 2 – Breakdowns and Searching
 ====
 
-**Back to [Section 1](../s1_api_intro) | Skip to [Section 3](../s3_filtering_segmentation) **
+**Go back to [Section 1](../s1_api_intro) | Skip to [Section 3](../s3_filtering_segmentation)**
 
 Objectives
 ----
@@ -15,7 +15,7 @@ Exercise 1 - Performing a Breakdown
 
 You will need to make multiple report requests in this exercise. The first request will get the values for Product Type:
 
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the top values for the Product Type dimension with the Product Views metric. The Product Type dimension is stored in variables/evar6 in the following report request:
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the top values for the **Product Type** dimension with the **Product Views** metric. The **Product Type** dimension is stored in **variables/evar6** in the following report request:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
@@ -98,7 +98,7 @@ The returned data should match the following:
 
 We want to break down the Boots product type by the Products in that category. We need to know the itemId for the value "Boots", which is 1664911617 as shown in the above result. The second request will do the actual breakdown:
 
-2. Using the itemID of 1664911617 obtained from the first request, run a second request breaking down the Boots item by Product with the following report request:
+2. Using the itemID of `1664911617` obtained from the first request, run a second request breaking down the **Boots** item by **Product** with the following report request:
 
 ```javascript
 {
@@ -214,14 +214,14 @@ The breakdown request returns the following results:
 
 the results match the Analysis Workspace report:
 
-![s2_exercise2_results1](../../images/s2_exercise2_results2.png?raw=true)
+![s2_exercise1_results](../../images/s2_exercise1_results.png?raw=true)
 
 
 Exercise 2 - Breakdown Page by Browser 
 -----
-Using the same technique for breakdowns you learned in section one, breakdown the Search Results page by Browser.
+Using the same technique for breakdowns you learned in section one, breakdown the **Search Results** page by **Browser**.
 
-1. First get the list of Pages using Analysis Workspace's default metric of Occurrences. **You will need to edit the following JavaScript before pasting into the body text box**:
+1. First get the list of **Pages** using Analysis Workspace's default metric of **Occurrences**. **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
@@ -247,10 +247,10 @@ Using the same technique for breakdowns you learned in section one, breakdown th
 Do your results for Page values match Analysis Workspace? 
 
 
-![s2_exercise2_results](../../images/s2_exercise2_results.png?raw=true)
+![s2_exercise2_results1](../../images/s2_exercise2_results1.png?raw=true)
 
-2. Find the itemId value for the "Search Results" page. 
-3. Construct a breakdown request to breakdown the "Search Results" page by Browser. **You will need to edit the following JavaScript before pasting into the body
+2. Find the `itemId` value for the "Search Results" page in the results from step 1. 
+3. Construct a breakdown request to breakdown the "Search Results" page by **Browser**. **You will need to edit the following JavaScript before pasting into the body
 text box**:
 ```javascript
 {
@@ -286,7 +286,7 @@ text box**:
 
 Do your results for the Search Results page broken down by Browser match Analysis Workspace?
 
-![s2_exercise2_results](../../images/s2_exercise2_results.png?raw=true) 
+![s2_exercise2_results2](../../images/s2_exercise2_results2.png?raw=true) 
 
 Analysis Workspace can also do searches on dimension values. 
 
@@ -336,7 +336,7 @@ There are other search criteria besides CONTAINS:
 Exercise 3 - Peforming a Search
 ----- 
 
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for the Page dimension with the value of "kids"
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimension to find results that contain the string `kids`
 ```javascript
 {
     "rsid": "geo1metrixxprod",
@@ -403,7 +403,7 @@ The response data will look something like this
 
 Exercise 4 - Searching with Operators
 -----
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any Page dimensions that contain the value of "kids" OR the value of "home". **You will need to edit the following JavaScript before pasting into the body text box**:
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimensions values that **contain** the string `kids` **OR** the string `home`. **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
@@ -437,7 +437,7 @@ Do your results match Analysis Workspace?
 
 Exercise 5 - Searching with different criteria
 -----
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any Page dimensions that start with the value of "Product" **You will need to edit the following JavaScript before pasting into the body text box**:
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimensions that **start with** the value of `Product` **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
