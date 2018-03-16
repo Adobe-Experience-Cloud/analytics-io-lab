@@ -10,6 +10,47 @@ Objectives
 
 A breakdown report filters a dimension based on the specific value of another dimension
 
+Understanding a Breakdown Request
+-----
+
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "Product Views",
+                "id": "metrics/productinstances",
+                "filters": [
+                    "0"
+                ]
+            }
+        ],
+        "metricFilters": [
+            {
+                "id": "0",
+                "type": "breakdown",
+                "dimension": "variables/evar6",
+                "itemId": "1664911617"
+            }
+        ]
+    },
+    "dimension": "variables/product"
+}
+```
+* A breakdown requires a metricFilters array in the metricContainer object
+	* The filter has an integer ID so it can be referenced on specific metrics
+	* The filters object is of type breakdown
+	* The dimension that this breakdown refers to is the variables/evar6 dimension 
+	* The itemId is is the specific id for Boots from Product Type report in the previous step
+* The metrics array now has a filter on the pageviews metric and the id of that metric matches the id of the filter defined in the metric filters array.
+
 Exercise 1 - Performing a Breakdown
 -----
 
@@ -131,87 +172,6 @@ We want to break down the Boots product type by the Products in that category. W
     "dimension": "variables/product"
 }
 ```
-
-Understanding a Breakdown Request
------
-* A breakdown requires a metricFilters array in the metricContainer object
-	* The filter has an integer ID so it can be referenced on specific metrics
-	* The filters object is of type breakdown
-	* The dimension that this breakdown refers to is the variables/evar6 dimension 
-	* The itemId is is the specific id for Boots from Product Type report in the previous step
-* The metrics array now has a filter on the pageviews metric and the id of that metric matches the id of the filter defined in the metric filters array.
-
-The breakdown request returns the following results:
-
-```javascript
-{
-  "totalPages": 1,
-  "firstPage": true,
-  "lastPage": true,
-  "numberOfElements": 6,
-  "number": 0,
-  "totalElements": 6,
-  "columns": {
-    "dimension": {
-      "id": "variables/product",
-      "type": "string"
-    },
-    "columnIds": [
-      "Product Views"
-    ]
-  },
-  "rows": [
-    {
-      "itemId": "4005923578",
-      "value": "Timberline GTX Boots",
-      "data": [
-        1618
-      ]
-    },
-    {
-      "itemId": "2877370343",
-      "value": "Black Run Ski Boots",
-      "data": [
-        483
-      ]
-    },
-    {
-      "itemId": "3722566666",
-      "value": "Tobermory Snow Boot",
-      "data": [
-        116
-      ]
-    },
-    {
-      "itemId": "3287064421",
-      "value": "Bruin Point Shearling Boots",
-      "data": [
-        62
-      ]
-    },
-    {
-      "itemId": "1146308611",
-      "value": "High Uintas Snow Boots",
-      "data": [
-        25
-      ]
-    },
-    {
-      "itemId": "3431234972",
-      "value": "Slopeside Snowboard Boot",
-      "data": [
-        9
-      ]
-    }
-  ],
-  "summaryData": {
-    "totals": [
-      2313
-    ]
-  }
-}
-```
-
 the results match the Analysis Workspace report:
 
 ![s2_exercise1_results](../../images/s2_exercise1_results.png?raw=true)
@@ -219,9 +179,7 @@ the results match the Analysis Workspace report:
 
 Exercise 2 - Breakdown Page by Browser 
 -----
-Using the same technique for breakdowns you learned in section one, breakdown the **Search Results** page by **Browser**.
-
-1. First get the list of **Pages** using Analysis Workspace's default metric of **Occurrences**. **You will need to edit the following JavaScript before pasting into the body text box**:
+1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the list of **Pages** using Analysis Workspace's default metric of **Occurrences**. **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
