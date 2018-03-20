@@ -10,17 +10,19 @@ Objectives
 *    Understand the data format for reporting
 *    Run your first report against the analytics APIs
 
+Instructor Demo - Dimensions and Metrics
+----
 Analysis Workspace presents users with lists of dimensions and metrics in the left rail. It uses the /dimensions and /metrics API methods to get those lists.
 
 Exercise 1 - Querying Lists of Dimensions
 -----
 
-Programmatically get a list of dimensions available in a report suite by calling the /dimensions API method according to the following steps: 
+Programmatically get a list of dimensions available in a report suite by calling the **/dimensions** API method according to the following steps: 
 
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Locate and expand the **dimensions** section in the Swagger interface
 3.    Click on **`GET /dimension`**
-4.    Enter `geo1metrixxprod` in the rsid box
+4.    Enter **`geo1metrixxprod`** in the rsid box
 5.    Click on the **Try it out!** button to run the API request
 
 This method returns a list of available dimensions for the report suite. The response will look something like the following.
@@ -53,7 +55,7 @@ Information on the other fields in this request can be found in the documentatio
 
 Exercise 2 - Querying Lists of Metrics
 -----
-Querying lists of metrics is similar to querying lists of dimensions. Request the list of available metrics for the report suite by calling the /metrics API method according to the following steps:
+Querying lists of metrics is similar to querying lists of dimensions. Request the list of available metrics for the report suite by calling the **/metrics** API method according to the following steps:
 
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Locate and expand the **metrics** section of the documentation
@@ -90,9 +92,13 @@ We are interested in the **`title`** field which is the friendly name of the met
 Information on the other fields in this request can be found in our documentation.
 [Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
 
+Instructor Demo - Analysis Workspace Report
+----
+Now that you know how to get lists of metrics and dimensions, you are ready to run your first report. In Analysis Workspace, you simply drag dimensions and metrics into the table panel.
+
 Understanding the report request
 -----
-Now that you know how to get lists of metrics and dimensions, you are ready to run your first report. In Analysis Workspace, you simply drag dimensions and metrics into the table panel. In order to do this programmatically you need to construct a report request. Review the following request:
+In order to run a report programmatically you need to construct a report request. Review the following request:
  
 ```javascript
 {
@@ -106,12 +112,11 @@ Now that you know how to get lists of metrics and dimensions, you are ready to r
   "metricContainer": {
     "metrics": [
       {
-        "columnId": "occurrences",
-        "id": "metrics/occurrences"
+        "id": "metrics/occurrences"       <-- These id values come from the /metrics API method
       }
     ]
   },
-  "dimension": "variables/page"
+  "dimension": "variables/page"           <-- These id values come from the /dimensions API method
 }
 ```
 
@@ -132,16 +137,13 @@ The array holds the metrics for the requested report. Metrics have two required 
 ##### id 
 The id of the metric. Use the /metrics or /calculatedmetrics API methods for the list of available options
 
-##### columnId
-The name of the column of data that will be returned. You may use the same metric multiple times with different filters in the report response so providing columnIds for the response makes it easier to identify them in the response.
-
 ### dimension (optional) 
 The optional dimension parameter will cause the report to return data for a particular dimension. The dimension can be any dimension from the /dimensions API method, including the daterange dimensions.
 
 Exercise 3 - Running Your First Report
 -----
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
-2.    Scroll down and expand the reports section 
+2.    Scroll down and expand the **reports** section 
 3.    Click on **`/reports/ranked`** to expand the documentation for that method
 4.    Paste the following JSON report request into the body text box
 ```javascript
@@ -251,7 +253,7 @@ This object holds the description of the columns in the response.
 This describes the dimension of the report response which will be represented as the itemId and value in the rows section of the response. The dimension has an id and a type.
 
 #### columnIds
-This is an array of the columns or metrics represented in the report. The values in this array match the columnIds passed in on the request.
+This is an array of the columns or metrics represented in the report. The values in this array match the columnIds passed in on the request. If you didn't specify any columnIds in the request, the are generated for you.
 
 ### rows
 This is an array of rows for the report response.
@@ -275,10 +277,13 @@ This array holds the totals over the requested date range for the metrics in thi
 Exercise 4 - Changing the Dimension and Metric
 -----
 1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
-2. Scroll down and expand the reports section 
+2. Scroll down and expand the **reports** section 
 3. Click on **`/reports/ranked`** to expand the documentation for that method
-4. Using the same basic report request from Exercise 3, change the dimension so that you are requesting the Product dimension and the metric so you are requesting the Product Views metric. **You will need to edit the following JavaScript before pasting into the body text box**:
+4. Using the same basic report request from Exercise 3, change the dimension so that you are requesting the **Product** dimension and the metric so you are requesting the **Product Views** metric. 
+..* The id for the **Product Views** metric is **`metrics/productinstances`** 
+..* The id for the **Product** dimension is **`variabes/products`**
 
+**You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
   "rsid": "geo1metrixxprod",
@@ -291,7 +296,6 @@ Exercise 4 - Changing the Dimension and Metric
   "metricContainer": {
     "metrics": [
       {
-        "columnId": "<edit this>",
         "id": "<edit this>"
       }
     ]
@@ -299,10 +303,7 @@ Exercise 4 - Changing the Dimension and Metric
   "dimension": "<edit this>"
 }
 ```
-
-**Hint:**  The name "Product Views" is only a display name, the actual metric ID is different. You may need to use the /metrics endpoint from Exercise 2 to look up the actual metric ID for the Product Views metric.
-
-6.   Click on **Try it out!**
+5.   Click on **Try it out!**
 
 
 Take a look at the results.  Do they match the following Analysis Workspace report?
@@ -312,10 +313,15 @@ Take a look at the results.  Do they match the following Analysis Workspace repo
 Exercise 5 - Multiple Metrics in a Single Request and Sorting
 -----
 1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
-2. Scroll down and expand the reports section 
-3. Click on **/reports/ranked** to expand the documentation for that method
-4. Using the same basic report request from Exercise 4, change the metrics so that you are requesting the Unique Visitors, Product Views, and Cart Additions metrics, sorted descending by Unique Visitors. **You will need to edit the following JavaScript before pasting into the body text box**:
+2. Scroll down and expand the **reports** section 
+3. Click on **`/reports/ranked`** to expand the documentation for that method
+4. Modify the report request from Exercise 4 so that you are requesting the **Unique Visitors**, **Product Views**, and **Cart Additions** metrics, sorted **descending** by **Unique Visitors**.
+..* The id for the **Unique Visitors** metric is **`metrics/visitors`** 
+..* Specify **`desc`** to sort descending
+..* The id for the **Product Views** metric is **`metrics/productinstances`** 
+..* The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
 
+ **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
@@ -328,16 +334,16 @@ Exercise 5 - Multiple Metrics in a Single Request and Sorting
     "metricContainer": {
         "metrics": [
             {
-                "columnId": "<edit this>",
+                "columnId": "1",
                 "id": "<edit this>",
                 "sort": "<edit this>"
             },
             {
-                "columnId": "<edit this>",
+                "columnId": "2",
                 "id": "<edit this>"
             },
             {
-                "columnId": "2",
+                "columnId": "3",
                 "id": "<edit this>"
             }
         ]
@@ -345,17 +351,17 @@ Exercise 5 - Multiple Metrics in a Single Request and Sorting
     "dimension": "variables/product"
 }
 ```
-
 **Hint:** A sort on column can be ascending ("asc") or descending ("desc")
 
-6.   Click on **Try it out!**
+5.   Click on **Try it out!**
 
 
 Take a look at the results.  Do they match the following Analysis Workspace report?
 
 ![s1_exercise5_results](../../images/s1_exercise5_results.png?raw=true)
 
-
+Section1 1 Complete
+-----
 Congratulations! You've completed Section 1 and should understand the basic elements of running a report using the new Analytics V2 API. You can **Continue to [Section 2](../s2_breakdown_search) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
 
 Extra Credit Challenge (optional)
