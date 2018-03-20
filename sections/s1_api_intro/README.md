@@ -60,7 +60,7 @@ Querying lists of metrics is similar to querying lists of dimensions. Request th
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Locate and expand the **metrics** section of the documentation
 3.    Click on **`GET /metrics`**
-4.    Enter `geo1metrixxprod` in the rsid box
+4.    Enter **`geo1metrixxprod`** in the rsid box
 5.    Click on the **Try it out!** button to run the API request
 
 This method returns a list of available metrics for the report suite.
@@ -112,11 +112,11 @@ In order to run a report programmatically you need to construct a report request
   "metricContainer": {
     "metrics": [
       {
-        "id": "metrics/occurrences"       <-- These id values come from the /metrics API method
+        "id": "metrics/occurrences"       <-- These metric id values come from the /metrics API method
       }
     ]
   },
-  "dimension": "variables/page"           <-- These id values come from the /dimensions API method
+  "dimension": "variables/page"           <-- This dimension id value comes from the /dimensions API method
 }
 ```
 
@@ -280,8 +280,8 @@ Exercise 4 - Changing the Dimension and Metric
 2. Scroll down and expand the **reports** section 
 3. Click on **`/reports/ranked`** to expand the documentation for that method
 4. Using the same basic report request from Exercise 3, change the dimension so that you are requesting the **Product** dimension and the metric so you are requesting the **Product Views** metric. 
-..* The id for the **Product Views** metric is **`metrics/productinstances`** 
-..* The id for the **Product** dimension is **`variabes/products`**
+  * The id for the **Product Views** metric is **`metrics/productinstances`** 
+  * The id for the **Product** dimension is **`variabes/products`**
 
 **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
@@ -316,10 +316,10 @@ Exercise 5 - Multiple Metrics in a Single Request and Sorting
 2. Scroll down and expand the **reports** section 
 3. Click on **`/reports/ranked`** to expand the documentation for that method
 4. Modify the report request from Exercise 4 so that you are requesting the **Unique Visitors**, **Product Views**, and **Cart Additions** metrics, sorted **descending** by **Unique Visitors**.
-..* The id for the **Unique Visitors** metric is **`metrics/visitors`** 
-..* Specify **`desc`** to sort descending
-..* The id for the **Product Views** metric is **`metrics/productinstances`** 
-..* The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
+  * The id for the **Unique Visitors** metric is **`metrics/visitors`** 
+  * Specify **`desc`** to sort descending
+  * The id for the **Product Views** metric is **`metrics/productinstances`** 
+  * The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
 
  **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
