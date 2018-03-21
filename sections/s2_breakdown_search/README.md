@@ -210,7 +210,6 @@ Section 2, Exercise 2 - Breakdown Page by Browser
 
 Do your results for **Page** values match Analysis Workspace? 
 
-
 ![s2_exercise2_results1](../../images/s2_exercise2_results1.png?raw=true)
 
 2. Find the `itemId` value for the "Search Results" page in the results from step 1. 
