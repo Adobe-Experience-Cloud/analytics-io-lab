@@ -1,6 +1,8 @@
 Section 5 – Tips and Tricks
 ====
 
+**Go Back to [Section 4](../s4_trended_data)**
+
 Objectives
 ----
 *    Learn how to run report requests from the Analysis Workspace UI in the API
@@ -10,18 +12,29 @@ The new Analytics V2 API powers the Analysis Workspace project. Analysis Workspa
 Running a report from Analysis Workspace
 -----
 1. Log into Analysis Workspace as described in [Section 0](../s0_getting_started)
+
 ![s1_landing_page](../../images/s1_landing_page.png?raw=true)
 
 2. Click on the **Create New Project** button to create a new project
+
 ![s1_create_new_project](../../images/s1_create_new_project.png?raw=true)
 
 3. Scroll down and select the **Products** template
+
 ![s1_retail_template](../../images/s1_retail_template.png?raw=true)
 
 4. Open the browser's developer tools 
-![s1_open_dev_tools](../../images/s1_open_dev_tools.png?raw=true)
 
-5. Enter `adobe.tools.debug.includeOberonXml = true` into the console and press Enter.
+On a Mac:
+
+![s5_open_dev_tools](../../images/s5_open_dev_tools.png?raw=true)
+
+On a PC:
+
+![s5_open_dev_tools_pc](../../images/s5_open_dev_tools_pc.png?raw=true)
+
+5. Select the **Console** tab and enter `adobe.tools.debug.includeOberonXml = true` into the console and press Enter.
+
 ![s1_debug_text](../../images/s1_debug_text.png?raw=true)
 
 6. Refresh the page
@@ -38,10 +51,37 @@ Running a report from Analysis Workspace
 11. Copy the text from the **JSON REQUEST** box by either manually selecting the text or using the handy **Copy to Clipboard** button
 ![s1_copy_json](../../images/s1_copy_json.png?raw=true)
 
-12. Paste the JSON into the /reports/ranked endpoint in the Swagger interface
+12. Paste the JSON into the **`/reports/ranked`** endpoint in the Swagger interface
 
-13. Click the run button 
+13. Click the **Try it out!**
 
-You can now see the data results that were used to create that panel. There is also a curl command listed in the debugger that you can examine to see which API method the Analysis Workspace UI called to render a given panel. When the new API is officially released, you will have access to most of the API methods used by Analysis Workspace, but not all. Some methods such as session keep-alive methods and other methods only make sense in the context of the Analysis Workspace product itself.
+14. Do your results match Analysis Workspace?
 
+15. Open the browser's developer tools again
+
+On a Mac:
+
+![s5_open_dev_tools](../../images/s5_open_dev_tools.png?raw=true)
+
+On a PC:
+
+![s5_open_dev_tools_pc](../../images/s5_open_dev_tools_pc.png?raw=true)
+
+16. Select the **Console** tab and enter `adobe.tools.debug.includeOberonXml = false` into the console and press Enter.
+
+![s1_debug_text](../../images/s1_debug_text.png?raw=true)
+
+17. Refresh the page. The debug icon should be gone.
+
+Section 5 Complete
+-----
+Congratulations! You have completed Section 5 and should know how to use the Analysis Workspace debugger to help you format report requests.
+
+Lab Complete
+-----
+You have completed the lab Introducing the Newest Adobe Analytics APIs.
+
+If you have additional time, you can try some of the Extra Credit Challenges in the previous sections.
+
+**Go Back to [Section 4](../s4_trended_data)**
 
