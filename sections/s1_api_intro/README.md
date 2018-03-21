@@ -280,10 +280,11 @@ Exercise 4 - Changing the Dimension and Metric
 2. Scroll down and expand the **reports** section 
 3. Click on **`/reports/ranked`** to expand the documentation for that method
 4. Using the same basic report request from Exercise 3, change the dimension so that you are requesting the **Product** dimension and the metric so you are requesting the **Product Views** metric. 
+
+**You will need to edit the following JavaScript before pasting into the body text box**:
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
   * The id for the **Product** dimension is **`variabes/products`**
 
-**You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
   "rsid": "geo1metrixxprod",
@@ -316,12 +317,13 @@ Exercise 5 - Multiple Metrics in a Single Request and Sorting
 2. Scroll down and expand the **reports** section 
 3. Click on **`/reports/ranked`** to expand the documentation for that method
 4. Modify the report request from Exercise 4 so that you are requesting the **Unique Visitors**, **Product Views**, and **Cart Additions** metrics, sorted **descending** by **Unique Visitors**.
+
+ **You will need to edit the following JavaScript before pasting into the body text box**:
   * The id for the **Unique Visitors** metric is **`metrics/visitors`** 
   * Specify **`desc`** to sort descending
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
   * The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
 
- **You will need to edit the following JavaScript before pasting into the body text box**:
 ```javascript
 {
     "rsid": "geo1metrixxprod",
@@ -360,7 +362,7 @@ Take a look at the results.  Do they match the following Analysis Workspace repo
 
 ![s1_exercise5_results](../../images/s1_exercise5_results.png?raw=true)
 
-Section1 1 Complete
+Section 1 Complete
 -----
 Congratulations! You've completed Section 1 and should understand the basic elements of running a report using the new Analytics V2 API. You can **Continue to [Section 2](../s2_breakdown_search) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
 
