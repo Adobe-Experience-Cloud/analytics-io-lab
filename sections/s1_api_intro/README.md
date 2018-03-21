@@ -14,7 +14,7 @@ Instructor Demo - Dimensions and Metrics
 ----
 Analysis Workspace presents users with lists of dimensions and metrics in the left rail. It uses the /dimensions and /metrics API methods to get those lists.
 
-Exercise 1 - Querying Lists of Dimensions
+Section 1, Exercise 1 - Querying Lists of Dimensions
 -----
 
 Programmatically get a list of dimensions available in a report suite by calling the **/dimensions** API method according to the following steps: 
@@ -53,7 +53,7 @@ There are a lot of available details about a dimension, but for the purpose of t
 Information on the other fields in this request can be found in the documentation.
 [Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
 
-Exercise 2 - Querying Lists of Metrics
+Section 1, Exercise 2 - Querying Lists of Metrics
 -----
 Querying lists of metrics is similar to querying lists of dimensions. Request the list of available metrics for the report suite by calling the **/metrics** API method according to the following steps:
 
@@ -140,7 +140,7 @@ The id of the metric. Use the /metrics or /calculatedmetrics API methods for the
 ### dimension (optional) 
 The optional dimension parameter will cause the report to return data for a particular dimension. The dimension can be any dimension from the /dimensions API method, including the daterange dimensions.
 
-Exercise 3 - Running Your First Report
+Section 1, Exercise 3 - Running Your First Report
 -----
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Scroll down and expand the **reports** section 
@@ -274,7 +274,7 @@ This is an array of aggregated or calculated data for this report.
 #### totals
 This array holds the totals over the requested date range for the metrics in this report request. Reference the columnIds array in the columns object to understand what each item in the totals array represents. 
 
-Exercise 4 - Changing the Dimension and Metric
+Section 1, Exercise 4 - Changing the Dimension and Metric
 -----
 1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2. Scroll down and expand the **reports** section 
@@ -311,7 +311,7 @@ Take a look at the results.  Do they match the following Analysis Workspace repo
 
 ![s1_exercise4_results](../../images/s1_exercise4_results.png?raw=true)
 
-Exercise 5 - Multiple Metrics in a Single Request and Sorting
+Section 1, Exercise 5 - Multiple Metrics in a Single Request and Sorting
 -----
 1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2. Scroll down and expand the **reports** section 

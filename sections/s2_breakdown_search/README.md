@@ -63,8 +63,8 @@ Breakdown the Product Type value of Boots by Product. You will need to make mult
 
 1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the top values for the **Product Type** dimension with the **Product Views** metric.
 
-  *The **Product Type** dimension is stored in **`variables/evar6`**
-  *The **Product Views** metric Id is **`metrics/productinstances`**
+  * The **Product Type** dimension is stored in **`variables/evar6`**
+  * The **Product Views** metric Id is **`metrics/productinstances`**
 
 ```javascript
 {
@@ -183,7 +183,7 @@ Section 2, Exercise 2 - Breakdown Page by Browser
 1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the list of **Pages** using Analysis Workspace's default metric of **Occurrences**.
 
 **You will need to edit the following JavaScript before pasting into the body text box**:
-  * The **id** for the **Ocurrences** metric is **`metrics/ocurrences`**
+  * The **id** for the **Occurrences** metric is **`metrics/ocurrences`**
   * The **dimension** id for the **Pages** dimension is **`variables/pages`**
 
 ```javascript
@@ -198,7 +198,7 @@ Section 2, Exercise 2 - Breakdown Page by Browser
     "metricContainer": {
         "metrics": [
             {
-                "columnId": "Ocurrences",
+                "columnId": "Occurrences",
                 "id": "<edit this>",
                 "sort": "desc"
             }
@@ -208,7 +208,7 @@ Section 2, Exercise 2 - Breakdown Page by Browser
 }
 ```
 
-Do your results for Page values match Analysis Workspace? 
+Do your results for **Page** values match Analysis Workspace? 
 
 
 ![s2_exercise2_results1](../../images/s2_exercise2_results1.png?raw=true)
@@ -217,11 +217,11 @@ Do your results for Page values match Analysis Workspace?
 3. Construct a breakdown request to breakdown the "Search Results" page by **Browser**.
 
  **You will need to edit the following JavaScript before pasting into the body text box**:
-  * The **id** for the **Ocurrences** metric is **`metrics/ocurrences`**
+  * The **id** for the **Occurrences** metric is **`metrics/ocurrences`**
   * Make sure the metric's filters include filter id **`0`**
   * The **id** for the metric filter is **`0`**
-  * The *type** of the metric filter is **`breakdown`**
-  * The **dimension** id of the **Pages** dimension is **`variables/page`** 
+  * The **type** of the metric filter is **`breakdown`**
+  * The **dimension** id of the **Page** dimension is **`variables/page`** 
   * The **itemId** of the "Search Results" **Page** is **`2897271828`**
   * The **dimension** id of the **Browser** dimension is **`variables/browser`**
 
@@ -237,7 +237,7 @@ Do your results for Page values match Analysis Workspace?
     "metricContainer": {
         "metrics": [
             {
-                "columnId": "Ocurrences",
+                "columnId": "Occurrences",
                 "id": "<edit this>",
                 "filters": [
                     "<edit this>"
@@ -268,7 +268,7 @@ Instructor Demo - Searching
 -----
 Analysis Workspace can also do searches on dimension values. 
 
-Understanding a Search attribute
+Understanding a Search Attribute
 -----
 ```javascript
 {

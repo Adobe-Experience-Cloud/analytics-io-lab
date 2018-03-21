@@ -1,17 +1,26 @@
-Section 3 – Filtering and Segmentation
+Section 3 – Segmentation
 ====
+
+**Go back to [Section 2](../s2_breakdown_search) | Skip to [Section 4](../s4_trended_data) »**
 
 Objectives
 ----
+* Get lists of segments
 * Run a report with a segment
-* Understand other forms of filtering
+* Programmatically create a segment
 
-Getting segments
+Instructor Demo - Getting Segments
 -----
-1. Make sure that you have followed the steps above to [Access the Swagger UI](../s1_api_intro#accessing-the-swagger-interface)
-2. Expand the GET /segments API endpoint
-3. Click the "Try it out!" button to submit the request
-4. You result should look something like this:
+Analysis Workspace presents users with lists of segments in the left rail. It uses the `GET /segments` API method to get the list.
+
+Section 3, Exercise 1 - Getting segments
+-----
+1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
+2. Locate and expand the **segments** API endpoint
+3. Specify **`shared,templates`** in the includType field
+4. Click the "Try it out!" button to submit the request
+5. You result should look something like this:
+
 ```javascript
 [
   {
@@ -25,71 +34,140 @@ Getting segments
   }
 ]
 ```
-5. Notice the `id` returned from this response. We will need to use this to reference this segment in the ranked report request.
+6. Notice the **`id`** returned from this response. We will need to use this id to reference this segment in the ranked report request.
 
-Running a report with a segment
+Instructor Demo - Global Segment
 -----
-1. Expand the POST /reports/ranked API endpoint
-2. Paste the following json report request into the body text box:
+A global segment applies to the entire report request
+
+Section 3, Exercise 2 - Running a Report with a Global Segment
+-----
+1. Using the **`POST /reports/ranked`** API method and **Try it out!** button as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a global segment: 
+
 ```javascript
 {
-   "rsid":"geo1metrixxprod",
-   "dimension":"variables/browser",
-   "globalFilters":[
-      {
-         "type":"dateRange",
-         "dateRange":"2018-01-01T00:00/2018-02-28T00:00"
-      },
-      {
-         "type":"segment",
-         "segmentId":"s300007301_5aa1af8b7f0bfd2308804475"
-      }
-   ],
-   "metricContainer":{
-      "metrics":[
-         {
-            "id":"metrics/visitors",
-            "sort":"desc"
-         }
-      ]
-   }
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "segment",
+            "segmentId": "s300007301_5aa1af8b7f0bfd2308804475"
+        },
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "id": "metrics/occurrences",
+                "sort": "desc"
+            }
+        ]
+    },
+    "dimension": "variables/browser"
 }
 ```
-3. Click the "Try it out!" button to submit the request
-4. Take a look at the results. You should have data where the browser contains "Chrome" sort by visitors descending.
 
-Other forms of filtering
+Does your result match Analysis Workspace?
+
+![s3_exercise2_results](../../images/s3_exercise2_results.png?raw=true)
+
+Instructor Demo - Segment as Metric Filter
 -----
-1. Expand the POST /reports/ranked API endpoint
-2. Paste the following json report request into the body text box:
+A segment can be applied as a filter on one or more metrics rather than the entire report request
+
+Section 3, Exercise 3 - Running a Report with a Segment Metric Filter
+-----
+1. Using the **`POST /reports/ranked`** API method and **Try it out!** button as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a metric filter:
+
 ```javascript
 {
-  "rsid": "geo1metrixxprod",
-  "dimension": "variables/page",
-  "globalFilters": [
-    {
-      "type": "dateRange",
-      "dateRange": "2018-01-01T00:00/2018-02-28T00:00"
-    }
-  ],
-  "search": {
-    "clause": "home",
-    "includeSearchTotal": true
-  },
-  "metricContainer": {
-    "metrics": [
-      {
-        "id": "metrics/visitors",
-        "sort": "desc"
-      }
-    ]
-  }
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "id": "metrics/occurrences",
+                "sort": "desc",
+                "filters": [
+                    "0"
+                ]
+            }
+        ],
+        "metricFilters": [
+            {
+                "id": "0",
+                "type": "segment",
+                "segmentId": "s300007301_5aa1af8b7f0bfd2308804475"
+            }
+        ]
+    },
+    "dimension": "variables/browser"
 }
 ```
-3. Click the "Try it out!" button to submit the request
-4. Take a look at the results. You should have data where the page dimension value contains the clause "home" sorted by visitors descending. You should also have a searchTotals array in the response with the totals of your search for "home".
 
-Congratulations! You've completed Section 4 and should understand how to work with segments in the new Analytics V2 API. You can **Continue to [Section 4](../s4_trended_data) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
+Does your result match Analysis Workspace?
+
+![s3_exercise3_results](../../images/s3_exercise3_results.png?raw=true)
+
+Instructor Demo - Segment as Dimension
+-----
+[TODO] A segment can be applied as a filter on one or more metrics rather than the entire report request Section 3, Exercise 4 - Running a Report with a Segment Metric Filter
+-----
+1. Using the **`POST /reports/ranked`** API method and **Try it out!** button as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a metric filter:
+
+```javascript
+{
+    "rsid": "geo1metrixxprod",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "id": "metrics/occurrences",
+                "sort": "desc",
+                "filters": [
+                    "0"
+                ]
+            }
+        ],
+        "metricFilters": [
+            {
+                "id": "0",
+                "type": "segment",
+                "segmentId": "s300007301_5aa1af8b7f0bfd2308804475"
+            }
+        ]
+    },
+    "dimension": "variables/browser"
+}
+```
+
+Does your result match Analysis Workspace?
+
+![s3_exercise3_results](../../images/s3_exercise3_results.png?raw=true)
+
+Getting a Segment Definition
+-----
+TODO 
+
+Saving a Segment
+-----
+TODO
+
+Section 3 Complete
+-----
+Congratulations! You've completed Section 3 and should understand how to work with segments in the new Analytics V2 API. You can **Continue to [Section 4](../s4_trended_data) »** now, or if you have some extra time you can try the optional Challenge below for some "extra credit", as well as explore the documentation further.
 
 Extra Credit Challenge (optional)
 -----
@@ -102,4 +180,4 @@ Further Reading (optional)
 -----
 * [Segments](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_segments_resource)
 
-**Continue to [Section 4](../s4_trended_data) »**
+**Go back to [Section 2](../s2_breakdown_search) | Continue to [Section 4](../s4_trended_data) »**
