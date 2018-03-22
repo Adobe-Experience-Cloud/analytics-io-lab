@@ -7,7 +7,7 @@ Objectives
 ----
 * Get lists of segments
 * Run a report with a segment
-* Programmatically create a segment
+* Create a segment
 
 Instructor Demo - Getting Segments
 -----
@@ -18,13 +18,13 @@ Section 3, Exercise 1 - Getting segments
 1. Using the Swagger interface as in past exercise, locate and expand the **segments** section
 2. Select the **`GET /segments`** API method
 3. Specify **`shared`** in the includType field
-4. Click the "Try it out!" button to submit the request
+4. Click the **Try it out!** button to submit the request
 5. You result should look something like this:
 
 ```javascript
 [
   {
-    "id": "s300007301_5aa1af8b7f0bfd2308804475",              <-- Segment id
+    "id": "s300007301_5aa1af8b7f0bfd2308804475",              <-- segment id
     "name": "Browser contains Chrome",
     "description": "",
     "rsid": "geo1metrixxgeometrixx.outdoors",
@@ -178,7 +178,7 @@ Using the Swagger interface, get the segment defition for a segment with the ID 
 2. Select the **`GET /segments/{id}`** API method.
 3. The segment **id** paramaeter should be **`s300007301_5ab28b65f30aae1bc76078ab`**
 4. The **expansion** parameter should be **`definition`**.  If you don't specifiy you want the definition then you'll just get back summary information about the segment.
-5. Click the "Try it out!" button to submit the request
+5. Click the **Try it out!** button to submit the request
 6. Your result should look something like this:
 
 ```javascript
@@ -249,7 +249,7 @@ Using the Swagger interface, create a new segment for **Male Mobile Visitors Int
 2. Select the **`POST /segments`** API method.
 3. Edit the following segment definition to change the segment name and the TODO 
 
-** You will need to edit the following JSON before pasting into the body box**
+**You will need to edit the following JSON before pasting into the body box**
   * The **name** should be **`Male Mobile Visitors Interested in Socks`**
   * The **description** should be **`Male Mobile Visitors Interested in Socks`**
   * The **str** value for the **Product Type** condition should be **`Socks`**
@@ -310,7 +310,7 @@ Using the Swagger interface, create a new segment for **Male Mobile Visitors Int
   }
 }
 ```
-5. Click the "Try it out!" button to create the request.
+5. Click the **Try it out!** button to create the segment.
 6. Your result should look something like this:
 
 ```javascript

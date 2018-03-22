@@ -69,8 +69,6 @@ On a PC:
 
 16. Select the **Console** tab and enter `adobe.tools.debug.includeOberonXml = false` into the console and press Enter.
 
-![s1_debug_text](../../images/s1_debug_text.png?raw=true)
-
 17. Refresh the page. The debug icon should be gone.
 
 Section 5 Complete
@@ -79,7 +77,9 @@ Congratulations! You have completed Section 5 and should know how to use the Ana
 
 Lab Complete
 -----
-You have completed the lab Introducing the Newest Adobe Analytics APIs.
+You have completed the lab L763 **Introducing the Latest Adobe Analytics APIs.**
+
+Remember to take the Survey in the mobile app to win a prize! This is session L763
 
 If you have additional time, you can try some of the Extra Credit Challenges in the previous sections.
 

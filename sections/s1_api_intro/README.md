@@ -320,7 +320,7 @@ Section 1, Exercise 5 - Multiple Metrics in a Single Request and Sorting
 
  **You will need to edit the following JavaScript before pasting into the body text box**:
   * The id for the **Unique Visitors** metric is **`metrics/visitors`** 
-  * Specify **`desc`** to sort descending
+  * The **sort** is **`desc`** to sort the **Unique Visitors** metric descending
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
   * The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
 

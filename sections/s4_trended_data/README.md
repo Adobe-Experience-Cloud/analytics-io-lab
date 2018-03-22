@@ -6,8 +6,6 @@ Section 4 – Trended Data
 Objectives
 ----
 * Learn the two different ways to run a trended report
-** Trend a metric over a date range
-** Trend a metric for specific dimension values over a date range
 * Understand the data format for requesting trended data   
 
 Instructor Demo - Running a report with a time granularity as dimension
@@ -35,7 +33,7 @@ Understanding a Trended Report Request
     "dimension": "variables/daterangehour",    <-- The dimension is a time granularity
 
     "settings": {                              <-- We need to add a "settings" section
-        "dimensionSort": "asc",	               <-- To specify sorting by dimension value instead of sorting by metric value
+        "dimensionSort": "asc",	               <-- to specify sorting by dimension value instead of sorting by metric value
     }	
 }
 ```
@@ -66,7 +64,7 @@ Section 4, Exercise 1 - Trend a metric
 -----
 Trend the **Occurrences** metric by hour.
 
-1. Using Swagger and the **``POST /reports/ranked`** endpoint as in past exercises, paste the following json report request into the body text box:
+1. Using Swagger and the **`POST /reports/ranked`** endpoint as in past exercises, paste the following JSON report request into the body text box:
 
 ```javascript
 {
@@ -91,7 +89,7 @@ Trend the **Occurrences** metric by hour.
 }
 ```
 
-2. Click the "Try it out!" button to submit the request
+2. Click the **Try it out!** button to submit the request
 3. Do your results match Analysis Workspace?
 
 ![s4_exercise1_results](../../images/s4_exercise1_results.png?raw=true)
@@ -102,9 +100,9 @@ You can also trend a specific dimension value by using a metric filter, similar 
 
 Section 4, Exercise 2 - Trend a Specific Dimension Value
 -----
-1. Using Swagger and the **``POST /reports/ranked`** endpoint as in past exercises, trend the **"Gear"** value of the **Page** dimension by hour with the following JSON report request:
+1. Using Swagger and the **`POST /reports/ranked`** endpoint as in past exercises, trend the **"Gear"** value of the **Page** dimension by hour with the following JSON report request:
 
-** You will need to edit the following JSON report request before pasting into the body text box**
+**You will need to edit the following JSON report request before pasting into the body text box**
   * The **id** of the **Occurrences** metric is **`metrics/occurrences`**
   * The **type** of metric filter is **`breakdown`** 
   * The **dimension** id in the metric filter is **`variables/page`**
@@ -145,7 +143,7 @@ Section 4, Exercise 2 - Trend a Specific Dimension Value
    }
 }
 ```
-2. Click the "Try it out!" button to submit the request
+2. Click the **Try it out!** button to submit the request
 3. Do your results match Analysis Workspace? (Compare your data to the line chart)
 
 ![s4_exercise2_results](../../images/s4_exercise2_results.png?raw=true)

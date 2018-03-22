@@ -465,5 +465,8 @@ This step is optional, for those who have extra time and like a challenge. Using
 1. Try to do a multiple-level deep breakdown by finding out how many **Unique Visitors** viewed the "UltraTech Socks" **Product** while searching with the "outdoor gear" keyword on a mobile device manufactured by "Samsung". Hint - You will need more than one filter in the filters array.
 2. What is the total number of unique visitors that looked at "Timberline GTX Boots" while using a mobile device manufacured by a company with the letter 'a' in it's name?
 
+Further Reading (optional)
+-----
+* [Ranked Reports](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_reports_resource)  Includes information on Breakdowns and Searches
 
-**Back to [Section 1](..s1_api_intro) | Continue to [Section 3](../s3_filtering_segmentation) »**
+**Back to [Section 1](../s1_api_intro) | Continue to [Section 3](../s3_filtering_segmentation) »**
