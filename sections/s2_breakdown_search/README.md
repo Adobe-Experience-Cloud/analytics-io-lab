@@ -216,7 +216,7 @@ Do your results for **Page** values match Analysis Workspace?
 3. Construct a breakdown request to breakdown the "Search Results" page by **Browser**.
 
  **You will need to edit the following JavaScript before pasting into the body text box**:
-  * The **id** for the **Occurrences** metric is **`metrics/ocurrences`**
+  * The **id** for the **Occurrences** metric is **`metrics/occurrences`**
   * Make sure the metric's filters include filter id **`0`**
   * The **id** for the metric filter is **`0`**
   * The **type** of the metric filter is **`breakdown`**
