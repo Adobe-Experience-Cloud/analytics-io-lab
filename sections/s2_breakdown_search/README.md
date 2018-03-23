@@ -422,7 +422,7 @@ Section 2, Exercise 5 - Searching with different criteria
 1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimensions that **start with** the value of `Product`
 
 **You will need to edit the following JavaScript before pasting into the body text box**:
-  * The search **clause** is **`BEGINS-WITH('Product')`**
+  * The search **clause** is **( `BEGINS-WITH 'Product' )`**
 
 ```javascript
 {

@@ -107,7 +107,7 @@ Section 4, Exercise 2 - Trend a Specific Dimension Value
   * The **type** of metric filter is **`breakdown`** 
   * The **dimension** id in the metric filter is **`variables/page`**
   * The **itemId** for the **"Gear"** page value is **`753253541`**
-  * The **dimension** id of the report is **`variabes/daterangehour`**
+  * The **dimension** id of the report is **`variables/daterangehour`**
   * The **dimensionSort** is **`asc`**
 
 ```javascript
