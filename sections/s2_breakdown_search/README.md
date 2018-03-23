@@ -183,8 +183,8 @@ Section 2, Exercise 2 - Breakdown Page by Browser
 1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the list of **Pages** using Analysis Workspace's default metric of **Occurrences**.
 
 **You will need to edit the following JavaScript before pasting into the body text box**:
-  * The **id** for the **Occurrences** metric is **`metrics/ocurrences`**
-  * The **dimension** id for the **Pages** dimension is **`variables/pages`**
+  * The **id** for the **Occurrences** metric is **`metrics/occurrences`**
+  * The **dimension** id for the **Pages** dimension is **`variables/page`**
 
 ```javascript
 {
