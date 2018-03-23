@@ -283,7 +283,7 @@ Section 1, Exercise 4 - Changing the Dimension and Metric
 
 **You will need to edit the following JavaScript before pasting into the body text box**:
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
-  * The id for the **Product** dimension is **`variabes/products`**
+  * The id for the **Product** dimension is **`variables/product`**
 
 ```javascript
 {
