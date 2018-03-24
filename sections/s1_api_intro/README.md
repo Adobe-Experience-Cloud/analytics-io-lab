@@ -274,44 +274,7 @@ This is an array of aggregated or calculated data for this report.
 #### totals
 This array holds the totals over the requested date range for the metrics in this report request. Reference the columnIds array in the columns object to understand what each item in the totals array represents. 
 
-Section 1, Exercise 4 - Changing the Dimension and Metric
------
-1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
-2. Scroll down and expand the **reports** section 
-3. Click on **`/reports/ranked`** to expand the documentation for that method
-4. Using the same basic report request from Exercise 3, change the dimension so that you are requesting the **Product** dimension and the metric so you are requesting the **Product Views** metric. 
-
-**You will need to edit the following JavaScript before pasting into the body text box**:
-  * The id for the **Product Views** metric is **`metrics/productinstances`** 
-  * The id for the **Product** dimension is **`variables/product`**
-
-```javascript
-{
-  "rsid": "geo1metrixxprod",
-  "globalFilters": [
-    {
-      "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000",
-      "type": "dateRange"
-    }
-  ],
-  "metricContainer": {
-    "metrics": [
-      {
-        "id": "<edit this>"
-      }
-    ]
-  },
-  "dimension": "<edit this>"
-}
-```
-5.   Click on **Try it out!**
-
-
-Take a look at the results.  Do they match the following Analysis Workspace report?
-
-![s1_exercise4_results](../../images/s1_exercise4_results.png?raw=true)
-
-Section 1, Exercise 5 - Multiple Metrics in a Single Request and Sorting
+Section 1, Exercise 4 - Multiple Metrics in a Single Request and Sorting
 -----
 1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2. Scroll down and expand the **reports** section 
@@ -323,6 +286,7 @@ Section 1, Exercise 5 - Multiple Metrics in a Single Request and Sorting
   * The **sort** is **`desc`** to sort the **Unique Visitors** metric descending
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
   * The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
+  * The id for the **dimension** is **`variables\product`**
 
 ```javascript
 {
@@ -350,7 +314,7 @@ Section 1, Exercise 5 - Multiple Metrics in a Single Request and Sorting
             }
         ]
     },
-    "dimension": "variables/product"
+    "dimension": "<edit this>"
 }
 ```
 **Hint:** A sort on column can be ascending ("asc") or descending ("desc")
