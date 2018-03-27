@@ -286,7 +286,7 @@ Section 1, Exercise 4 - Multiple Metrics in a Single Request and Sorting
   * The **sort** is **`desc`** to sort the **Unique Visitors** metric descending
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
   * The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
-  * The id for the **dimension** is **`variables\product`**
+  * The id for the **dimension** is **`variables/product`**
 
 ```javascript
 {
