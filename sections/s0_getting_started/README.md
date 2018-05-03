@@ -36,6 +36,8 @@ Make sure you're logged into Analytics, then select the **“Access Token”** b
 
 This will automatically copy an access token to your clipboard.
 
+<a href='javascript:var text = "";if(typeof(OM) != "undefined"){ text = OM.Config.appConfig.appService.token;} else { text = adobe.analytics.appConfig.appService.token;} var textArea = document.createElement("textarea"); textArea.style.position = 'fixed'; textArea.style.top = 0; textArea.style.left = 0; textArea.style.width = '2em'; textArea.style.height = '2em'; textArea.style.padding = 0; textArea.style.border = 'none'; textArea.style.outline = 'none'; textArea.style.boxShadow = 'none'; textArea.style.background = 'transparent'; textArea.value = text; document.body.appendChild(textArea); textArea.select(); try { var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; console.log('Copying text command was ' + msg); } catch (err) { console.log('Oops, unable to copy'); } document.body.removeChild(textArea);'>Access Token</a>
+
 Accessing the Swagger Interface
 ----
 We will be using a Swagger interface to generate API requests in this lab. To access Swagger, open your web browser and navigate to [https://adobe-experience-cloud.github.io/adobe-analytics-lab-api-docs/](https://adobe-experience-cloud.github.io/adobe-analytics-lab-api-docs/?input_companyName=Analytics%20API%20Summit%202018&input_clientKey=aa_test_key#!/users)
