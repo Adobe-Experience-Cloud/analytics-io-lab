@@ -3,6 +3,7 @@ Section 0 - Getting Started
 
 Objectives
 ----
+* Log in and get to know analysis workspace
 * Learn how to authenticate API calls in the lab
 
 Experience Cloud Accounts
@@ -27,28 +28,50 @@ Enter your assigned username and the password provided to you and click **Sign I
 You should be taken directly to the Analysis Workspace landing page in the **Analytics API Summit 2018** login company:
 ![s0_workspace_landing_page](../../images/s0_workspace_landing_page.png?raw=true)
 
-Authentication
+You Are now Ready to work in analysis workspace
+
+
+API Authentication
 ----
-### Getting the Lab Access Token
 
-Make sure you're logged into Analytics, then select the **“Access Token”** bookmark from the browser’s bookmark bar:
-![s0_access_token_bookmark](../../images/s0_access_token_bookmark.png?raw=true)
-
-This will automatically copy an access token to your clipboard.
 
 Accessing the Swagger Interface
 ----
-We will be using a Swagger interface to generate API requests in this lab. To access Swagger, open your web browser and navigate to [https://adobe-experience-cloud.github.io/adobe-analytics-lab-api-docs/](https://adobe-experience-cloud.github.io/adobe-analytics-lab-api-docs/?input_companyName=Analytics%20API%20Summit%202018&input_clientKey=aa_test_key#!/users)
-![s0_swagger_interface](../../images/s0_swagger_interface.png?raw=true)
+We will be using a Swagger interface to generate API requests in this lab. To access Swagger, in a new tab or window in your web browser navigate to [Analytics Swagger](https://adobedocs.github.io/analytics-2.0-apis/)
 
-To make an API request in Swagger, you will need to make sure you have provided an access token on each request
+To make an API request in Swagger, you will need to make sure you are authenticated to provide an access token on each request
+
+### Authenticating through Swagger
+
+**Let's sign in!**
+To authenticate through swagger click on the login button at the top of the page. 
+![s0_swagger_ui](../../images/s0_swagger_ui.png?raw=true)
+
+Go to https://marketing.adobe.com and select **Sign In with an Adobe ID**
+![s0_exp_cloud_login](../../images/s0_exp_cloud_login.png?raw=true)
+
+The username will be of the following format:
+
+`apilab18+<User ID>@adobetest.com`
+
+where the `<User ID >` section is replaced by your lab computer number.  For example, apilab18+37@adobetest.com
+
+Enter your assigned username and the password provided to you and click **Sign In**
+![s0_exp_cloud_login2](../../images/s0_exp_cloud_login2.png?raw=true)
+
 
 Validate API Connectivity
 ----
 Let's make sure everything works correctly. Click on the **Users** section in the Swagger interface and then select **GET /users/me**, then click **Try it out!**:
-![s0_swagger_users_me](../../images/s0_swagger_users_me.png?raw=true)
 
-If you entered the Access Token, Analytics Company, and Client Key correctly you should get a JSON response from the /users/me endpoint with information about your current user:
+![s0_swagger_users_me](../../images/s0_swagger_users_me_1.png?raw=true)
+
+Then click **Execute**
+
+![s0_swagger_users_me2](../../images/s0_swagger_users_me_2.png?raw=true)
+
+
+If you have authenticated correctly you should get a JSON response from the /users/me endpoint with information about your current user:
 
 /users/me response
 ```javascript
