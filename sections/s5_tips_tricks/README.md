@@ -77,9 +77,7 @@ Congratulations! You have completed Section 5 and should know how to use the Ana
 
 Lab Complete
 -----
-You have completed the lab L763 **Introducing the Latest Adobe Analytics APIs.**
-
-Remember to take the Survey in the mobile app to win a prize! This is session L763
+You have completed the lab! 
 
 If you have additional time, you can try some of the Extra Credit Challenges in the previous sections.
 
