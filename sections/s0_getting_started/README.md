@@ -13,7 +13,7 @@ The new Analytics APIs require users and organizations to be configured for logi
 In this lab you will be using an Experience Cloud organization and Analytics login company that is already configured for Experience Cloud Authentication. 
 
 **Let's sign in!**
-Go to https://marketing.adobe.com and select **Sign In with an Adobe ID**
+Go to http://experiencecloud.adobe.com and select **Sign In with an Adobe ID**
 ![s0_exp_cloud_login](../../images/s0_exp_cloud_login.png?raw=true)
 
 The username will be of the following format:
