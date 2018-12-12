@@ -8,12 +8,12 @@ Objectives
 
 Experience Cloud Accounts
 ----
-The new Analytics APIs require users and organizations to be configured for login via the Experience Cloud at https://marketing.adobe.com rather than the traditional Analytics login page at my.omniture.com.
+The new Analytics APIs require users and organizations to be configured for login via the Experience Cloud at https://experiencecloud.adobe.com rather than the traditional Analytics login page at my.omniture.com.
 
 In this lab you will be using an Experience Cloud organization and Analytics login company that is already configured for Experience Cloud Authentication. 
 
 **Let's sign in!**
-Go to http://experiencecloud.adobe.com and select **Sign In with an Adobe ID**
+Go to https://experiencecloud.adobe.com and select **Sign In with an Adobe ID**
 ![s0_exp_cloud_login](../../images/s0_exp_cloud_login.png?raw=true)
 
 The username will be of the following format:
@@ -47,7 +47,7 @@ To make an API request in Swagger, you will need to make sure you are authentica
 To authenticate through swagger click on the login button at the top of the page. 
 ![s0_swagger_ui](../../images/s0_swagger_ui.png?raw=true)
 
-Go to https://marketing.adobe.com and select **Sign In with an Adobe ID**
+Go to https://experiencecloud.adobe.com and select **Sign In with an Adobe ID**
 ![s0_exp_cloud_login](../../images/s0_exp_cloud_login.png?raw=true)
 
 The username will be of the following format:
