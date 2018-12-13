@@ -138,6 +138,6 @@ Running a report with a calculated metric
 
 Further Reading (optional)
 -----
-* [Calculated Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_calculatedmetrics_resource)
+* [Calculated Metrics](https://adobedocs.github.io/analytics-2.0-apis/#/calculatedmetrics)
 
 **Continue to [Components](../components) »**
