@@ -467,6 +467,6 @@ This step is optional, for those who have extra time and like a challenge. Using
 
 Further Reading (optional)
 -----
-* [Ranked Reports](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_reports_resource)  Includes information on Breakdowns and Searches
+* [Reports](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md)  Includes information on Breakdowns and Searches
 
 **Back to [Section 1](../s1_api_intro) | Continue to [Section 3](../s3_filtering_segmentation) »**
