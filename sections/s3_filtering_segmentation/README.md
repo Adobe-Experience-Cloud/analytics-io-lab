@@ -143,6 +143,6 @@ This step is optional, for those who have extra time and like a challenge. Using
 
 Further Reading (optional)
 -----
-* [Segments](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_segments_resource)
+* [Segments Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/segments-guide.md)
 
 **Go back to [Section 2](../s2_breakdown_search) | Continue to [Section 4](../s4_trended_data) »**
