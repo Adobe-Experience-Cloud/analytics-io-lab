@@ -50,8 +50,8 @@ This method returns a list of available dimensions for the report suite. The res
 
 There are a lot of available details about a dimension, but for the purpose of this lab we are interested in the **`title`** field which is the friendly name of the dimension and the **`id`** which is the identifier needed to refer to this dimension in a report request.
 
-Information on the other fields in this request can be found in the documentation.
-[Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
+Information on the other fields in this request can be found in our Swagger documentation.
+[Dimensions](https://adobedocs.github.io/analytics-2.0-apis/#/dimensions/dimensions_getDimensions)
 
 Section 1, Exercise 2 - Querying Lists of Metrics
 -----
@@ -89,8 +89,8 @@ The response will look something like the following.
 
 We are interested in the **`title`** field which is the friendly name of the metric and the **`id`** which is the identifier needed to refer to this metric in a report request.
 
-Information on the other fields in this request can be found in our documentation.
-[Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
+Information on the other fields in this request can be found in our Swagger documentation.
+[Metrics](https://adobedocs.github.io/analytics-2.0-apis/#/metrics/getMetrics)
 
 Instructor Demo - Analysis Workspace Report
 ----
@@ -341,11 +341,11 @@ This step is optional, for those who have extra time and like a challenge. Using
 Further Reading (optional)
 -----
 
-* [Ranked Reports](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_reports_resource)
+* [Reports](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md)
 
-* [Dimensions](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_dimensions_resource)
+* [Dimensions](https://adobedocs.github.io/analytics-2.0-apis/#/dimensions/dimensions_getDimensions)
 
-* [Metrics](https://adobe-experience-cloud.github.io/analytics-io-lab/analytics-api-reference-guide.html#_metrics_resource)
+* [Metrics](https://adobedocs.github.io/analytics-2.0-apis/#/metrics/getMetrics)
 
 
 **Go back to [Section 0](../s0_getting_started) | Continue to [Section 2](../s2_breakdown_search) »**
