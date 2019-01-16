@@ -61,7 +61,7 @@ Section 2, Exercise 1 - Performing a Breakdown
 
 Breakdown the Product Type value of Boots by Product. You will need to make multiple report requests in this exercise. The first request will get the values for Product Type:
 
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the top values for the **Product Type** dimension with the **Product Views** metric.
+1.    Using the `/reports` endpoint like in past exercises, first request the top values for the **Product Type** dimension with the **Product Views** metric.
 
   * The **Product Type** dimension is stored in **`variables/evar6`**
   * The **Product Views** metric Id is **`metrics/productinstances`**
@@ -180,9 +180,9 @@ Do the results match Analysis Workspace?
 
 Section 2, Exercise 2 - Breakdown Page by Browser 
 -----
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, first request the list of **Pages** using Analysis Workspace's default metric of **Occurrences**.
+1.    Using the `/reports` endpoint like in past exercises, first request the list of **Pages** using Analysis Workspace's default metric of **Occurrences**.
 
-**You will need to edit the following JavaScript before pasting into the body text box**:
+**You will need to edit the following JSON request before pasting into the body text box**:
   * The **id** for the **Occurrences** metric is **`metrics/occurrences`**
   * The **dimension** id for the **Pages** dimension is **`variables/page`**
 
@@ -215,7 +215,7 @@ Do your results for **Page** values match Analysis Workspace?
 2. Find the `itemId` value for the "Search Results" page in the results from step 1. 
 3. Construct a breakdown request to breakdown the "Search Results" page by **Browser**.
 
- **You will need to edit the following JavaScript before pasting into the body text box**:
+ **You will need to edit the following JSON request before pasting into the body text box**:
   * The **id** for the **Occurrences** metric is **`metrics/occurrences`**
   * Make sure the metric's filters include filter id **`0`**
   * The **id** for the metric filter is **`0`**
@@ -312,7 +312,7 @@ There are other search criteria besides CONTAINS:
 Section 2, Exercise 3 - Peforming a Search
 ----- 
 
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimension values that contain the string `kids`
+1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimension values that contain the string `kids`
 
 ```javascript
 {
@@ -381,9 +381,9 @@ The response data will look something like this:
 
 Section 2, Exercise 4 - Searching with Operators
 -----
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimensions values that **contain** the string `kids` **OR** the string `home`.
+1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimensions values that **contain** the string `kids` **OR** the string `home`.
 
-**You will need to edit the following JavaScript before pasting into the body text box**:
+**You will need to edit the following JSON request before pasting into the body text box**:
   * The search **clause** is **`( CONTAINS 'kids' ) OR ( CONTAINS 'home' )`**
 
 ```javascript
@@ -419,9 +419,9 @@ Do your results match Analysis Workspace?
 
 Section 2, Exercise 5 - Searching with different criteria
 -----
-1.    Using the `/reports/ranked` endpoint and the **Try it out!** button like in past exercises, perform a search for any **Page** dimensions that **start with** the value of `Product`
+1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimensions that **start with** the value of `Product`
 
-**You will need to edit the following JavaScript before pasting into the body text box**:
+**You will need to edit the following JSON request before pasting into the body text box**:
   * The search **clause** is **( `BEGINS-WITH 'Product' )`**
 
 ```javascript
