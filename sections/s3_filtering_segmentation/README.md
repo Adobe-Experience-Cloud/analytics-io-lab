@@ -17,9 +17,10 @@ Section 3, Exercise 1 - Getting segments
 -----
 1. Using the Swagger interface as in past exercise, locate and expand the **segments** section
 2. Select the **`GET /segments`** API method
-3. Specify **`shared`** in the includType field
-4. Click the **Try it out!** button to submit the request
-5. You result should look something like this:
+3. Click the **Try it out!** button
+4. Specify **`shared`** in the includeType field
+5. Click the **Execute** button to submit the request
+6. You result should look something like this:
 
 ```javascript
 [
@@ -43,7 +44,7 @@ Section 3, Exercise 1 - Getting segments
   }
 ]
 ```
-6. Notice the Segment's **`id`** returned from this response. We will need to use segment ids to reference segments in the ranked report request.
+6. Notice the Segment's **`id`** returned from this response. We will need to use segment ids to reference segments in the report request.
 
 Instructor Demo - Global Segment
 -----
@@ -51,7 +52,7 @@ A global segment applies to the entire report request
 
 Section 3, Exercise 2 - Running a Report with a Global Segment
 -----
-1. Using the **`POST /reports/ranked`** API method and **Try it out!** button as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a global segment: 
+1. Using the **`POST /reports`** API method as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a global segment: 
 
 ```javascript
 {
@@ -88,9 +89,9 @@ A segment can be applied as a filter on one or more metrics rather than the enti
 
 Section 3, Exercise 3 - Running a Report with a Segment Metric Filter
 -----
-1. Using the **`POST /reports/ranked`** API method and **Try it out!** button as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a metric filter:
+1. Using the **`POST /reports`** API method as in previous exercises, run a report on the **Browsers** dimension and **Occurrences** metric using the segment "Browser Contains Chrome" as a metric filter:
 
-**You will need to edit the following JSON before pasting into the body box**
+**You will need to edit the following JSON request before pasting into the body box**
   * The **type** of the metric filter should be **`segment`**
   * The **segmentId** in the metric filter should be **`s300007301_5aa1af8b7f0bfd2308804475`**
 
