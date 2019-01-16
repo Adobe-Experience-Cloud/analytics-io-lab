@@ -48,7 +48,7 @@ Sharing a calculated metric with another user
 1. Get the numeric loginId of the user to which you would like to share the calculated metric.
 2. Expand the `users` section in swagger.
 3. Expand the `GET /users` API endpoint. The default will limit the result to 10 users. You can change the limit using the `limit' query parameter if you would like.
-4. Click the `Try it out!` button.
+4. Click the `Try it out!` button and then the `Execute` button.
 5. Look at the results.
 ```javascript
 [
@@ -77,7 +77,8 @@ Sharing a calculated metric with another user
 7. If you would like to create a new calculated metric follow the steps from the [Previous Section](../calculated-metrics) or you can just use the id of the calculated metric you already created in the previous section.
 8. Expand the `shares` section.
 9. Expand the `POST /shares` API endpoint.
-10. Paste the following json in the post body:
+10. Click the "Try it out!" button
+11. Paste the following json in the post body:
 ```javascript
 {
   "shareToType": "user",
@@ -86,9 +87,9 @@ Sharing a calculated metric with another user
   "componentId": "INSERT_CALCULATED_METRIC_ID_HERE"
 }
 ```
-11. Replace the loginId and componentId values with the ids we obtained earlier.
-12. Click the `Try it out!` button.
-13. Check your result. You should have something that looks like the following:
+12. Replace the loginId and componentId values with the ids we obtained earlier.
+13. Click the `Execute` button.
+14. Check your result. You should have something that looks like the following:
 ```javascript
 {
   "shareId": 149302,
@@ -142,7 +143,8 @@ Tagging a calculated metric with a new tag
 ----
 1. Expand the `tags` section in swagger.
 2. Expand the `POST /tags` API endpoint.
-3. Paste the following json in the post body:
+3. Click the "Try it out!" button
+4. Paste the following json in the post body:
 ```javascript
 [
   {
@@ -157,7 +159,7 @@ Tagging a calculated metric with a new tag
 ]
 ```
 4. Replace the `INSERT_CALCULATED_METRIC_ID_HERE` with the id of the calculated metric you would like to tag.
-5. Click the `Try it out!` button.
+5. Click the `Execute` button.
 6. Check your result. You should have a response similar to this:
 ```javascript
 [
@@ -203,7 +205,8 @@ Marking a calculated metric as a favorite
 ----
 1. Expand the `favorites` section in swagger.
 2. Expand the `POST /favorites` API endpoint.
-3. Paste the following json in the post body:
+3. Click the "Try it out!" button
+4. Paste the following json in the post body:
 ```javascript
 [
   {
@@ -212,9 +215,9 @@ Marking a calculated metric as a favorite
   }
 ]
 ```
-4. Replace the `INSERT_CALCULATED_METRIC_ID_HERE` with the id of the calculated metric you would like to tag.
-5. Click the `Try it out!` button.
-6. Check your result. You should have a response similar to this:
+5. Replace the `INSERT_CALCULATED_METRIC_ID_HERE` with the id of the calculated metric you would like to tag.
+6. Click the `Try it out!` button.
+7. Check your result. You should have a response similar to this:
 ```javascript
 [
   {
