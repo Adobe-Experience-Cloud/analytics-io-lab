@@ -11,7 +11,8 @@ Creating a new calculated metric
 1. Make sure that you have followed the steps above to [Access the Swagger UI](../s1_api_intro#accessing-the-swagger-interface)
 2. Expand the `calculatedmetrics` section
 3. Expand the `POST /calculatedmetrics` API endpoint
-4. Paste the following json segment definition into the body text box. This will create a new calculated metric that gives the average visits per visitor by dividing `visits` by `visitor`.
+4. Click the "Try it out!" button
+5. Paste the following json segment definition into the body text box. This will create a new calculated metric that gives the average visits per visitor by dividing `visits` by `visitor`.
 ```javascript
 {
   "name": "Average Visits per Visitor",
@@ -37,8 +38,8 @@ Creating a new calculated metric
   }
 }
 ```
-5. Click the "Try it out!" button to submit the request
-6. You result should look something like this:
+6. Click the "Execute" button to submit the request
+7. You result should look something like this:
 ```javascript
 {
   "id": "cm6638_5a9986e0dc0e82002168db6e",
@@ -59,8 +60,9 @@ Creating a new calculated metric
 Running a report with a calculated metric
 -----
 1. Expand the reports section
-2. Expand the POST /reports/ranked API endpoint
-3. Paste the following json report request into the body text box:
+2. Expand the POST /reports API endpoint
+3. Click the "Try it out!" button
+4. Paste the following json report request into the body text box:
 ```javascript
 {
    "rsid":"geometrixx1",
@@ -91,9 +93,9 @@ Running a report with a calculated metric
    }
 }
 ```
-4. Replace the `INSERT_CALCULATED_METRIC_ID_HERE` text with the id of the calculated metric created above.
-5. Click the "Try it out!" button to submit the request
-6. Take a look at the results. Your data should look something like this:
+5. Replace the `INSERT_CALCULATED_METRIC_ID_HERE` text with the id of the calculated metric created above.
+6. Click the "Execute" button to submit the request
+7. Take a look at the results. Your data should look something like this:
 ```javascript
 {
   "totalPages": 2,
@@ -134,7 +136,7 @@ Running a report with a calculated metric
     },
     ...
 ```
-7. Notice the first column of data is the value of the visits column divided by the visitors column.
+8. Notice the first column of data is the value of the visits column divided by the visitors column.
 
 Further Reading (optional)
 -----
