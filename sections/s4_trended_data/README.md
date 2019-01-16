@@ -64,7 +64,7 @@ Section 4, Exercise 1 - Trend a metric
 -----
 Trend the **Occurrences** metric by hour.
 
-1. Using Swagger and the **`POST /reports/ranked`** endpoint as in past exercises, paste the following JSON report request into the body text box:
+1. Using Swagger and the **`POST /reports`** endpoint as in past exercises, paste the following JSON report request into the body text box:
 
 ```javascript
 {
@@ -89,7 +89,7 @@ Trend the **Occurrences** metric by hour.
 }
 ```
 
-2. Click the **Try it out!** button to submit the request
+2. Click the **Execute** button to submit the request
 3. Do your results match Analysis Workspace?
 
 ![s4_exercise1_results](../../images/s4_exercise1_results.png?raw=true)
