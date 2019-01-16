@@ -49,7 +49,7 @@ Quarter: variables/daterangequarter
 Year:    variables/daterangeyear
 ```
 ### settings
-The ranked settings provide several parameters that control how the data is returned in the response.
+The settings provide several parameters that control how the data is returned in the response.
 
 #### limit (optional)
 Sets an upper limit on the number of data rows to return. The default is 50.
