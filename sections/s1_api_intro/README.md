@@ -285,7 +285,7 @@ Section 1, Exercise 4 - Multiple Metrics in a Single Request and Sorting
 4. Click the **Try it out!** button
 5. Modify the report request from Exercise 4 so that you are requesting the **Unique Visitors**, **Product Views**, and **Cart Additions** metrics, sorted **descending** by **Unique Visitors**.
 
- **You will need to edit the following JavaScript before pasting into the body text box**:
+ **You will need to edit the following JSON request before pasting into the body text box**:
   * The id for the **Unique Visitors** metric is **`metrics/visitors`** 
   * The **sort** is **`desc`** to sort the **Unique Visitors** metric descending
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
