@@ -22,8 +22,9 @@ Programmatically get a list of dimensions available in a report suite by calling
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Locate and expand the **dimensions** section in the Swagger interface
 3.    Click on **`GET /dimension`**
-4.    Enter **`geo1metrixxprod`** in the rsid box
-5.    Click on the **Try it out!** button to run the API request
+4.    Click the **Try it out!** button
+5.    Enter **`geo1metrixxprod`** in the rsid box
+6.    Click on the **Execute** button to run the API request
 
 This method returns a list of available dimensions for the report suite. The response will look something like the following.
 ```javascript
@@ -60,8 +61,9 @@ Querying lists of metrics is similar to querying lists of dimensions. Request th
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Locate and expand the **metrics** section of the documentation
 3.    Click on **`GET /metrics`**
-4.    Enter **`geo1metrixxprod`** in the rsid box
-5.    Click on the **Try it out!** button to run the API request
+4.    Click the **Try it out!** button
+5.    Enter **`geo1metrixxprod`** in the rsid box
+6.    Click on the **Execute** button to run the API request
 
 This method returns a list of available metrics for the report suite.
 The response will look something like the following.
@@ -144,8 +146,9 @@ Section 1, Exercise 3 - Running Your First Report
 -----
 1.    Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2.    Scroll down and expand the **reports** section 
-3.    Click on **`/reports/ranked`** to expand the documentation for that method
-4.    Paste the following JSON report request into the body text box
+3.    Click on **`/reports`** to expand the documentation for that method
+4.    Click the **Try it out!** button
+5.    Paste the following JSON report request into the body text box
 ```javascript
 {
   "rsid": "geo1metrixxprod",
@@ -166,7 +169,7 @@ Section 1, Exercise 3 - Running Your First Report
   "dimension": "variables/page"
 }
 ```
-6.   Click on Try it Out!
+6.   Click the **Execute** button
 
 
 Take a look at the results.  Do they match this Analysis Workspace report?
@@ -278,8 +281,9 @@ Section 1, Exercise 4 - Multiple Metrics in a Single Request and Sorting
 -----
 1. Make sure that you have followed the steps in [Section 0 - Getting Started] [Accessing the Swagger Interface](../s0_getting_started#accessing-the-swagger-interface) and [Validate API Connectivity](../s0_getting_started#validate-api-connectivity)
 2. Scroll down and expand the **reports** section 
-3. Click on **`/reports/ranked`** to expand the documentation for that method
-4. Modify the report request from Exercise 4 so that you are requesting the **Unique Visitors**, **Product Views**, and **Cart Additions** metrics, sorted **descending** by **Unique Visitors**.
+3. Click on **`/reports`** to expand the documentation for that method
+4. Click the **Try it out!** button
+5. Modify the report request from Exercise 4 so that you are requesting the **Unique Visitors**, **Product Views**, and **Cart Additions** metrics, sorted **descending** by **Unique Visitors**.
 
  **You will need to edit the following JavaScript before pasting into the body text box**:
   * The id for the **Unique Visitors** metric is **`metrics/visitors`** 
@@ -319,7 +323,7 @@ Section 1, Exercise 4 - Multiple Metrics in a Single Request and Sorting
 ```
 **Hint:** A sort on column can be ascending ("asc") or descending ("desc")
 
-5.   Click on **Try it out!**
+6.   Click on **Execute**
 
 
 Take a look at the results.  Do they match the following Analysis Workspace report?
