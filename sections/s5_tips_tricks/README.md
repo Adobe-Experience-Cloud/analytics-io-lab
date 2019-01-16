@@ -51,13 +51,15 @@ On a PC:
 11. Copy the text from the **JSON REQUEST** box by either manually selecting the text or using the handy **Copy to Clipboard** button
 ![s1_copy_json](../../images/s1_copy_json.png?raw=true)
 
-12. Paste the JSON into the **`/reports/ranked`** endpoint in the Swagger interface
+12. Click the **Try it out!** button
 
-13. Click the **Try it out!**
+12. Paste the JSON into the **`/reports`** endpoint in the Swagger interface
 
-14. Do your results match Analysis Workspace?
+14. Click the **Execute**
 
-15. Open the browser's developer tools again
+15. Do your results match Analysis Workspace?
+
+16. Open the browser's developer tools again
 
 On a Mac:
 
@@ -67,9 +69,9 @@ On a PC:
 
 ![s5_open_dev_tools_pc](../../images/s5_open_dev_tools_pc.png?raw=true)
 
-16. Select the **Console** tab and enter `adobe.tools.debug.includeOberonXml = false` into the console and press Enter.
+17. Select the **Console** tab and enter `adobe.tools.debug.includeOberonXml = false` into the console and press Enter.
 
-17. Refresh the page. The debug icon should be gone.
+18. Refresh the page. The debug icon should be gone.
 
 Section 5 Complete
 -----
