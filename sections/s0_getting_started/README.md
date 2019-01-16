@@ -94,7 +94,7 @@ If you have authenticated correctly you should get a JSON response from the /use
 }
 ```
 
-For rest of this lab you will use Swagger and make the API requests in the same way with the **Try it out!** button for each API method.
+For rest of this lab you will use Swagger and make the API requests in the same way with the **Try it out!** and **Execute** buttons for each API method.
 
 **Continue to [Section 1](../s1_api_intro) »**
 
