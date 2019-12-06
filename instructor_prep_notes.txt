@@ -1,0 +1,8 @@
+-Check to make sure we have a good demo report suite that has current data and make sure the examples are all updated with data ranges that have data.
+
+-Prepare printouts with the API lab users/password:
+API lab users are: apilab18+[1-1000]@adobetest.com
+API Lab user password is stored in vault:
+vault read dx_intelligentservices/api_lab/api_lab_user_pwd
+
+-Test out a few lab users to make sure they still work
