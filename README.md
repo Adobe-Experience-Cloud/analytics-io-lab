@@ -1,4 +1,4 @@
-# Explore the New Adobe Analytics 2.0 APIs
+# Explore the Adobe Analytics 2.0 APIs
 
 ## Table of Contents
 
@@ -128,7 +128,7 @@ Programmatically get a list of dimensions available in a report suite by calling
 2.    Locate and expand the **dimensions** section in the Swagger interface
 3.    Click on **`GET /dimension`**
 4.    Click the **Try it out!** button
-5.    Enter **`geo1metrixxprod`** in the rsid box
+5.    Enter **`igeo1xxpnwcidadobepm`** in the rsid box
 6.    Click on the **Execute** button to run the API request
 
 This method returns a list of available dimensions for the report suite. The response will look something like the following.
@@ -166,7 +166,7 @@ Querying lists of metrics is similar to querying lists of dimensions. Request th
 2.    Locate and expand the **metrics** section of the documentation
 3.    Click on **`GET /metrics`**
 4.    Click the **Try it out!** button
-5.    Enter **`geo1metrixxprod`** in the rsid box
+5.    Enter **`igeo1xxpnwcidadobepm`** in the rsid box
 6.    Click on the **Execute** button to run the API request
 
 This method returns a list of available metrics for the report suite.
@@ -206,10 +206,10 @@ In order to run a report programmatically you need to construct a report request
  
 ```javascript
 {
-  "rsid": "geo1metrixxprod",
+  "rsid": "igeo1xxpnwcidadobepm",
   "globalFilters": [
     {
-      "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000",
+      "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000",
       "type": "dateRange"
     }
   ],
@@ -252,10 +252,10 @@ The optional dimension parameter will cause the report to return data for a part
 5.    Paste the following JSON report request into the body text box
 ```javascript
 {
-  "rsid": "geo1metrixxprod",
+  "rsid": "igeo1xxpnwcidadobepm",
   "globalFilters": [
     {
-      "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000",
+      "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000",
       "type": "dateRange"
     }
   ],
@@ -283,51 +283,53 @@ Here is a partial example response:
 
 ```javascript
 {
-    "totalPages": 3,
-    "firstPage": true,
-    "lastPage": false,
-    "numberOfElements": 50,
-    "number": 0,
-    "totalElements": 149,
-    "columns": {
-        "dimension": {
-            "id": "variables/page",
-            "type": "string"
-        },
-        "columnIds": [
-            "0"
-        ]
+  "totalPages": 127,
+  "firstPage": true,
+  "lastPage": false,
+  "numberOfElements": 50,
+  "number": 0,
+  "totalElements": 6304,
+  "columns": {
+    "dimension": {
+      "id": "variables/page",
+      "type": "string"
     },
-    "rows": [
-        {
-            "itemId": "2897271828",
-            "value": "Search Results",
-            "data": [
-                4618
-            ]
-        },
-        {
-            "itemId": "2080918144",
-            "value": "Shopping Cart: Cart Details",
-            "data": [
-                3853
-            ]
-        },
-        {
-            "itemId": "3306266643",
-            "value": "Home",
-            "data": [
-                3612
-            ]
-        }
-		...
-		
-     ],
-    "summaryData": {
-        "totals": [
-            39700
-        ]
-    }
+    "columnIds": [
+      "occurrences"
+    ]
+  },
+  "rows": [
+    {
+      "itemId": "3306266643",
+      "value": "home",
+      "data": [
+        157374
+      ]
+    },
+    {
+      "itemId": "1806533347",
+      "value": "purchase: step 1",
+      "data": [
+        111969
+      ]
+    },
+    {
+      "itemId": "1541138801",
+      "value": "purchase: step 2",
+      "data": [
+        81106
+      ]
+    },
+    ...
+  ],
+  "summaryData": {
+    "filteredTotals": [
+      1808270
+    ],
+    "totals": [
+      2278684
+    ]
+  }
 }
 ```
 
@@ -389,15 +391,15 @@ This array holds the totals over the requested date range for the metrics in thi
   * The **sort** is **`desc`** to sort the **Unique Visitors** metric descending
   * The id for the **Product Views** metric is **`metrics/productinstances`** 
   * The id for the **Cart Additions** metric is **`metrics/cartadditions`** 
-  * The id for the **dimension** is **`variables/product`**
+  * The id for the **dimension** is **`variables/product.1`**
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -435,8 +437,9 @@ Congratulations! You've completed Lesson 2 and should understand the basic eleme
 #### Extra Credit Challenge (optional)
 This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
 
-1. How many unique visitors from the U.S. state of California visited our site on February 28, 2018?
-2. How many unique visitors looked at the "Slickrock Trail Bike" product on February 28, 2018 and how many times was it added to a shopping cart that day?
+1. How many unique visitors from the U.S. state of California visited our site on November 15, 2019?
+2. How many unique visitors looked at the "Winter Flannel Romper" product on November 15, 2019 and how many times was it added to a shopping cart that day?
+**Hint:** You will need to use the classification dimension `variables/product.1` to get product names in your report response.
 
 #### Further Reading (optional)
 * [Reports](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md)
@@ -455,11 +458,11 @@ A breakdown report filters a dimension based on the specific value of another di
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -476,16 +479,16 @@ A breakdown report filters a dimension based on the specific value of another di
             {
                 "id": "0",
                 "type": "breakdown",
-                "dimension": "variables/evar6",       <-- We are breaking down Product Type
-                "itemId": "1664911617"
+                "dimension": "variables/product.33",       <-- We are breaking down Category (Retail)
+                "itemId": "1099999822"
             }
         ]
     },
-    "dimension": "variables/product"                  <-- by Product
+    "dimension": "variables/product.1"                  <-- by Product Name
 }
 ```
 
-When we breakdown Product Type by Product, we are actually **filtering** Product by a specific value of Product Type.
+When we breakdown Category (Retail) by Product Name, we are actually **filtering** Product Name by a specific value of Category (Retail).
 
 * A breakdown requires a metricFilters array in the metricContainer object
 	* The filter has an integer Id so it can be referenced on specific metrics
@@ -495,20 +498,20 @@ When we breakdown Product Type by Product, we are actually **filtering** Product
 * The metrics array now has a filter on the pageviews metric and the Id of that metric matches the Id of the filter defined in the metric filters array.
 
 #### Exercise 3.1 - Performing a Breakdown
-Breakdown the Product Type value of Boots by Product. You will need to make multiple report requests in this exercise. The first request will get the values for Product Type:
+Breakdown the Category (Retail) value of Women by Product Name. You will need to make multiple report requests in this exercise. The first request will get the values for Category (Retail):
 
-1.    Using the `/reports` endpoint like in past exercises, first request the top values for the **Product Type** dimension with the **Product Views** metric.
+1.    Using the `/reports` endpoint like in past exercises, first request the top values for the **Category (Retail)** dimension with the **Product Views** metric.
 
-  * The **Product Type** dimension is stored in **`variables/evar6`**
+  * The **Category (Retail)** dimension is stored in **`variables/product.33`**
   * The **Product Views** metric Id is **`metrics/productinstances`**
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -520,7 +523,7 @@ Breakdown the Product Type value of Boots by Product. You will need to make mult
             }
         ]
     },
-    "dimension": "variables/evar6"
+    "dimension": "variables/product.33"
 }
 ```
 The returned data should match the following:
@@ -529,12 +532,12 @@ The returned data should match the following:
   "totalPages": 1,
   "firstPage": true,
   "lastPage": true,
-  "numberOfElements": 34,
+  "numberOfElements": 4,
   "number": 0,
-  "totalElements": 34,
+  "totalElements": 4,
   "columns": {
     "dimension": {
-      "id": "variables/evar6",
+      "id": "variables/product.33",
       "type": "string"
     },
     "columnIds": [
@@ -543,48 +546,56 @@ The returned data should match the following:
   },
   "rows": [
     {
-      "itemId": "1664911617",                     <-- We want to break down Boots so we need its specific itemId
-      "value": "Boots",
+      "itemId": "1099999822",                     <-- We want to break down Women so we need its specific itemId
+      "value": "Women",
       "data": [
-        2313
+        84242
       ]
     },
     {
-      "itemId": "2271066348",
-      "value": "Jackets",
+      "itemId": "2435464411",
+      "value": "Men",
       "data": [
-        1984
+        65844
       ]
     },
- ...
- 
     {
-      "itemId": "3642090695",
-      "value": "Helmets",
+      "itemId": "3857221589",
+      "value": "Kids",
       "data": [
-        50
+        47311
+      ]
+    },
+    {
+      "itemId": "0",
+      "value": "Unspecified",
+      "data": [
+        38595
       ]
     }
   ],
   "summaryData": {
+    "filteredTotals": [
+      235992
+    ],
     "totals": [
-      12609
+      235992
     ]
   }
 }
 ```
 
-We want to break down the "Boots" **Product Type** by the **Products** in that category. We need to know the itemId for the value "Boots", which is "1664911617" as shown in the above result. The second request will do the actual breakdown:
+We want to break down the "Women" **Category (Retail)** by the **Product Name** in that category. We need to know the itemId for the value "Women", which is "1099999822" as shown in the above result. The second request will do the actual breakdown:
 
-2. Using the itemID of **`1664911617`** obtained from the first request, run a second request breaking down the "Boots" item by **Product** with the following report request:
+2. Using the itemID of **`1099999822`** obtained from the first request, run a second request breaking down the "Women" item by **Product Name** with the following report request:
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -601,12 +612,12 @@ We want to break down the "Boots" **Product Type** by the **Products** in that c
             {
                 "id": "0",
                 "type": "breakdown",
-                "dimension": "variables/evar6",
-                "itemId": "1664911617"
+                "dimension": "variables/product.33",
+                "itemId": "1099999822"
             }
         ]
     },
-    "dimension": "variables/product"
+    "dimension": "variables/product.1"
 }
 ```
 Do the results match Analysis Workspace?
@@ -623,11 +634,11 @@ Do the results match Analysis Workspace?
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -647,8 +658,8 @@ Do your results for **Page** values match Analysis Workspace?
 
 ![s2_exercise2_results1](images/s2_exercise2_results1.png?raw=true)
 
-2. Find the `itemId` value for the "Search Results" page in the results from step 1. 
-3. Construct a breakdown request to breakdown the "Search Results" page by **Browser**.
+2. Find the `itemId` value for the "search results" page in the results from step 1. 
+3. Construct a breakdown request to breakdown the "search results" page by **Browser**.
 
  **You will need to edit the following JSON request before pasting into the body text box**:
   * The **id** for the **Occurrences** metric is **`metrics/occurrences`**
@@ -656,16 +667,16 @@ Do your results for **Page** values match Analysis Workspace?
   * The **id** for the metric filter is **`0`**
   * The **type** of the metric filter is **`breakdown`**
   * The **dimension** id of the **Page** dimension is **`variables/page`** 
-  * The **itemId** of the "Search Results" **Page** is **`2897271828`**
+  * The **itemId** of the "search results" **Page** is **`2897271828`**
   * The **dimension** id of the **Browser** dimension is **`variables/browser`**
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -691,7 +702,7 @@ Do your results for **Page** values match Analysis Workspace?
 }
 ```
 
-Do your results for the Search Results page broken down by Browser match Analysis Workspace?
+Do your results for the search results page broken down by Browser match Analysis Workspace?
 
 ![s2_exercise2_results2](images/s2_exercise2_results2.png?raw=true) 
 
@@ -702,11 +713,11 @@ Analysis Workspace can also do searches on dimension values.
 -----
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -719,7 +730,7 @@ Analysis Workspace can also do searches on dimension values.
     },
     "dimension": "variables/page",
     "search": {                                      <-- You need a search attribute
-        "clause": "( CONTAINS 'kids' )",             <-- with a search clause
+        "clause": "( CONTAINS 'blogs' )",             <-- with a search clause
 	"includeSearchTotal" : true
     }
 }
@@ -727,11 +738,11 @@ Analysis Workspace can also do searches on dimension values.
 
 A search attribute added to the report request will filter the dimensions in the report by the search clause. A search attribute must contain a clause attribute. All other attributes are optional. Search clauses can be very flexible and use the AND, OR, and NOT logical operators. 
 
-*   "clause": "( CONTAINS 'Kids' ) OR ( CONTAINS 'Home' )"
-*   "clause": "( CONTAINS 'Kids' ) AND ( NOT CONTAINS 'Home' )"
-*   "clause": "( 'Kids' ) AND ( 'Home' )"
-*   "clause": "'Kids' OR 'Home'"
-*   "clause": "'Kids'"
+*   "clause": "( CONTAINS 'blogs' ) OR ( CONTAINS 'home' )"
+*   "clause": "( CONTAINS 'blogs' ) AND ( NOT CONTAINS 'home' )"
+*   "clause": "( 'blogs' ) AND ( 'home' )"
+*   "clause": "'blogs' OR 'home'"
+*   "clause": "'blogs'"
 
 
 There are other search criteria besides CONTAINS:
@@ -741,15 +752,15 @@ There are other search criteria besides CONTAINS:
 
 
 #### Exercise 3.3 - Peforming a Search
-1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimension values that contain the string `kids`
+1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimension values that contain the string `blogs`
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -763,7 +774,7 @@ There are other search criteria besides CONTAINS:
     },
     "dimension": "variables/page",
     "search": {
-        "clause": "( CONTAINS 'kids' )",
+        "clause": "( CONTAINS 'blogs' )",
 	"includeSearchTotal" : true
     }
 }
@@ -776,9 +787,9 @@ The response data will look something like this:
   "totalPages": 1,
   "firstPage": true,
   "lastPage": true,
-  "numberOfElements": 1,
+  "numberOfElements": 3,
   "number": 0,
-  "totalElements": 1,
+  "totalElements": 3,
   "columns": {
     "dimension": {
       "id": "variables/page",
@@ -790,37 +801,54 @@ The response data will look something like this:
   },
   "rows": [
     {
-      "itemId": "3857221589",
-      "value": "Kids",
+      "itemId": "1284471516",
+      "value": "blogs",
       "data": [
-        1316
+        8092
+      ]
+    },
+    {
+      "itemId": "2942189314",
+      "value": "app: blogs",
+      "data": [
+        2362
+      ]
+    },
+    {
+      "itemId": "1091597811",
+      "value": "mobile web: blogs",
+      "data": [
+        629
       ]
     }
   ],
   "summaryData": {
+    "filteredTotals": [
+      11083
+    ],
     "totals": [
-      39700
+      2278684
     ],
     "searchTotals": [
-      1316
+      11083
     ]
   }
 }
 ```
 
 #### Exercise 3.4 - Searching with Operators
-1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimensions values that **contain** the string `kids` **OR** the string `home`.
+1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimensions values that **contain** the string `blogs` **OR** the string `home`.
 
 **You will need to edit the following JSON request before pasting into the body text box**:
-  * The search **clause** is **`( CONTAINS 'kids' ) OR ( CONTAINS 'home' )`**
+  * The search **clause** is **`( CONTAINS 'blogs' ) OR ( CONTAINS 'home' )`**
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -846,18 +874,18 @@ Do your results match Analysis Workspace?
 
 
 #### Exercise 3.5 - Searching with different criteria
-1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimensions that **start with** the value of `Product`
+1.    Using the `/reports` endpoint like in past exercises, perform a search for any **Page** dimensions that **start with** the value of `product`
 
 **You will need to edit the following JSON request before pasting into the body text box**:
-  * The search **clause** is **( `BEGINS-WITH 'Product' )`**
+  * The search **clause** is **`( BEGINS-WITH 'product' )`**
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -887,8 +915,8 @@ Congratulations! You've completed Lesson 3 and should understand breakdowns and 
 #### Extra Credit Challenge (optional)
 This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
 
-1. Try to do a multiple-level deep breakdown by finding out how many **Unique Visitors** viewed the "UltraTech Socks" **Product** while searching with the "outdoor gear" keyword on a mobile device manufactured by "Samsung". Hint - You will need more than one filter in the filters array.
-2. What is the total number of unique visitors that looked at "Timberline GTX Boots" while using a mobile device manufacured by a company with the letter 'a' in it's name?
+1. Try to do a multiple-level deep breakdown by finding out how many **Unique Visitors** viewed the "Winter Flannel Romper" **Product Name** while searching on a mobile device manufactured by "Samsung".
+2. What is the total number of times the "Yellow Twist Tee" was added to the shopping cart while using a browser with the letter 'e' in it's name?
 
 #### Further Reading (optional)
 * [Reports](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md)  Includes information on Breakdowns and Searches
@@ -925,7 +953,7 @@ Analysis Workspace presents users with lists of segments in the left rail. It us
     "id": "s300007301_5ab1b4fc5ef3a55946dce0d0",
     "name": "Mobile Hits",
     "description": "Mobile Hits",
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "owner": {
       "id": 706903
     }
@@ -942,7 +970,7 @@ A global segment applies to the entire report request
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "segment",
@@ -950,7 +978,7 @@ A global segment applies to the entire report request
         },
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -981,11 +1009,11 @@ A segment can be applied as a filter on one or more metrics rather than the enti
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -1030,7 +1058,7 @@ This step is optional, for those who have extra time and like a challenge. Using
 ## Lesson 5 - Trended Data
 
 ### Objectives
-* Understand the data format for requesting trended data   
+* Understand the data format for requesting trended data
 
 ### Instructor Demo - Running a report with a time granularity as dimension
 You can use a time granularity as a dimension in Analysis Workspace report to get a trended report
@@ -1038,11 +1066,11 @@ You can use a time granularity as a dimension in Analysis Workspace report to ge
 ### Understanding a Trended Report Request
 ```javacript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -1089,11 +1117,11 @@ Trend the **Occurrences** metric by hour.
 
 ```javascript
 {
-    "rsid": "geo1metrixxprod",
+    "rsid": "igeo1xxpnwcidadobepm",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-03-01T00:00:00.000/2018-03-04T00:00:00.000"
+            "dateRange": "2019-11-01T00:00:00.000\/2019-12-01T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -1121,7 +1149,7 @@ Congratulations! You've completed Lesson 5 and should understand how to request 
 #### Extra Credit Challenge (optional)
 This step is optional, for those who have extra time and like a challenge. Using the Report API methods and techniques you've already learned, as well as the documentation, see if you can answer the following questions:
 
-1. What day of the month recieved the most traffic from the apple iphone?
+1. What day of the month received the most traffic from the apple iphone?
 2. Which product is most popular during the hour of the day that gets the most traffic?
 
 ## Lesson 6 - Tips and Tricks
@@ -1165,7 +1193,7 @@ On a PC:
 
 8. Locate the **Product Performance Grid** panel in the Analysis Workspace project and click on the debugger icon, then click on **Freeform Table**
 
-9. Notice that there are possibly multiple requests per panel
+9. There are possibly multiple requests per panel
 ![s1_debug_link](images/s1_debug_link.png?raw=true)
 
 10. Click on one of the requests
