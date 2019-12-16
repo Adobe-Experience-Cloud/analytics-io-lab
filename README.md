@@ -51,8 +51,11 @@ The username will be of the following format:
 
 where the `<User ID >` section is replaced by your lab computer number.  For example, apilab18+37@adobetest.com
 
-Enter your assigned username and the password provided to you and click **Sign In**
+Enter the assigned username provided to you and click **Continue**
 ![s0_exp_cloud_login2](images/s0_exp_cloud_login2.png?raw=true)
+
+Enter the password provided to you and click **Continue**
+![s0_exp_cloud_login2](images/s0_exp_cloud_login3.png?raw=true)
 
 You should be taken directly to the Analysis Workspace landing page:
 ![s1_create_new_project](images/s1_create_new_project.png?raw=true)
@@ -74,8 +77,11 @@ The username will be of the following format:
 
 where the `<User ID >` section is replaced by your lab computer number.  For example, apilab18+37@adobetest.com
 
-Enter your assigned username and the password provided to you and click **Sign In**
+Enter the assigned username provided to you and click **Continue**
 ![s0_exp_cloud_login2](images/s0_exp_cloud_login2.png?raw=true)
+
+Enter the password provided to you and click **Continue**
+![s0_exp_cloud_login2](images/s0_exp_cloud_login3.png?raw=true)
 
 #### Exercise 1.2 Validate API Connectivity
 Let's make sure everything works correctly. Click on the **Users** section in the Swagger interface and then select **GET /users/me**, then click **Try it out!**:
