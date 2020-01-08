@@ -35,7 +35,7 @@ Learn how to apply the new Analytics API to your business needs by:
 2. Learn how to authenticate API calls in the lab
 
 ### Experience Cloud Accounts
-The new Analytics APIs require users and organizations to be configured for login via the Experience Cloud at https://experiencecloud.adobe.com, rather than the traditional Analytics login page at my.omniture.com.
+The Analytics 2.0 APIs require users and organizations to be configured for login via the Experience Cloud at https://experiencecloud.adobe.com.
 
 In this lab you will be using an Experience Cloud organization and Analytics login company that is already configured for Experience Cloud Authentication.
 
