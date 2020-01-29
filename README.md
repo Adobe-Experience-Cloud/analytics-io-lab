@@ -47,9 +47,9 @@ In a new browser tab or window, go to https://experiencecloud.adobe.com and sele
 
 The username will be of the following format:
 
-`apilab18+<User ID>@adobetest.com`
+`L723+<User ID>@tryadobe.com`
 
-where the `<User ID >` section is replaced by your lab computer number.  For example, apilab18+37@adobetest.com
+where the `<User ID >` section is replaced by your lab computer number.  For example, L723+301@tryadobe.com
 
 Enter the assigned username provided to you and click **Continue**
 ![s0_exp_cloud_login2](images/s0_exp_cloud_login2.png?raw=true)
@@ -73,9 +73,9 @@ Go to https://experiencecloud.adobe.com and select **Sign In with an Adobe ID**
 
 The username will be of the following format:
 
-`apilab18+<User ID>@adobetest.com`
+`L723+<User ID>@tryadobe.com`
 
-where the `<User ID >` section is replaced by your lab computer number.  For example, apilab18+37@adobetest.com
+where the `<User ID >` section is replaced by your lab computer number.  For example, L723+301@tryadobe.com
 
 Enter the assigned username provided to you and click **Continue**
 ![s0_exp_cloud_login2](images/s0_exp_cloud_login2.png?raw=true)
@@ -99,10 +99,10 @@ If you have authenticated correctly you should get a JSON response from the /use
 {
   "companyid": 300007301,
   "loginId": 709153,
-  "login": "apilab18+37@adobetest.com",
+  "login": "L723+301@tryadobe.com",
   "createDate": "2018-01-22T12:39:16",
   "disabled": false,
-  "email": "apilab18+37@adobetest.com",
+  "email": "L723+301@tryadobe.com",
   "firstName": "API Lab 37",
   "fullName": "API Lab 37 API Lab 37",
   "imsUserId": "EBCA2A9C5A664BAA0A495C94@AdobeID",
