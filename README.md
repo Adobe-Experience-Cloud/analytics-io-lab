@@ -946,24 +946,26 @@ Analysis Workspace presents users with lists of segments in the left rail. It us
 
 ```javascript
 [
-  {
-    "id": "s300007301_5aa1af8b7f0bfd2308804475",              <-- segment id
-    "name": "Browser contains Chrome",
-    "description": "",
-    "rsid": "geo1metrixxgeometrixx.outdoors",
-    "owner": {
-      "id": 722124					      
+    {
+      "name": "Browser contains Chrome",
+      "description": "",
+      "id": "s300009771_5e39b41c8b03437830d8d50a",
+      "owner": {
+        "id": 200260525
+      },
+      "migratedIds": [],
+      "rsid": "igeo1xxpnwcidadobepm"
+    },
+    {
+      "name": "Mobile Hits",
+      "description": "Mobile Hits",
+      "id": "s300009771_5e39b4d3120ebf5561fd675a",
+      "owner": {
+        "id": 200260525
+      },
+      "migratedIds": [],
+      "rsid": "igeo1xxpnwcidadobepm"
     }
-  },
-  {
-    "id": "s300007301_5ab1b4fc5ef3a55946dce0d0",
-    "name": "Mobile Hits",
-    "description": "Mobile Hits",
-    "rsid": "igeo1xxpnwcidadobepm",
-    "owner": {
-      "id": 706903
-    }
-  }
 ]
 ```
 6. Notice the Segment's **`id`** returned from this response. We will need to use segment ids to reference segments in the report request.
@@ -980,7 +982,7 @@ A global segment applies to the entire report request
     "globalFilters": [
         {
             "type": "segment",
-            "segmentId": "s300007301_5aa1af8b7f0bfd2308804475"
+            "segmentId": "s300009771_5e39b41c8b03437830d8d50a"
         },
         {
             "type": "dateRange",
